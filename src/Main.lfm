@@ -146,7 +146,7 @@ object EditorMainForm: TEditorMainForm
       Style = tbsSeparator
     end
     object CheckBox1: TToolButton
-      Left = 657
+      Left = 478
       Top = 2
       Caption = 'Read Only'
       ImageIndex = 27
@@ -154,9 +154,9 @@ object EditorMainForm: TEditorMainForm
       Style = tbsCheck
     end
     object syntaxLabel: TLabel
-      Left = 478
+      Left = 512
       Height = 28
-      Top = 0
+      Top = 2
       Width = 179
       Align = alClient
       Alignment = taCenter
