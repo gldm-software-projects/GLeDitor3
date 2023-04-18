@@ -203,6 +203,7 @@ Type
     actToggleFontColor: TAction;
     actToggleFontColor1: TMenuItem;
     //testItem: TMenuItem;
+    procedure FormDropFiles(Sender: TObject; const FileNames: array of string);
     Function GetNextTheme(): string;
     Function GetNextEnumTheme(): TGleditTheme;
     Function GetNextThemeBy(var ath:TGleditTheme): string;
@@ -684,10 +685,12 @@ Begin
   //ToolBar1.ParentColor:=true;
   //toolbar1.Transparent:=false;
   // configurazioni globali totali
-  cfgdir := GetEnvVarValue('LOCALAPPDATA')+'\GLeDitor'; 
-  cfgfile := cfgdir+'\gledit.ini';
-  if (directoryexists(cfgdir) = false) then
-    CreateDir(cfgdir);
+  //cfgdir := GetEnvVarValue('LOCALAPPDATA')+'\GLeDitor'; 
+  //cfgfile := cfgdir+'\gledit.ini';
+  cfgdir := GetAppConfigDir(false);
+  cfgfile :=GetAppConfigFile(false);
+  //if (directoryexists(cfgdir) = false) then
+  //  CreateDir(cfgdir);
   // altro
   CustomThemeYetSelected := false;
   SpeechCreation;
@@ -734,7 +737,7 @@ Begin
   StatusBar1.Panels[2].Text := NomeFile;
   nfile := ExtractFileName(NomeFile);
   Application.Title := nFile;
-  caption := 'GLeDitor - '+nFile;
+  caption := 'GLeDitor3 - '+nFile;
   // infine carico il file di configurazione
  // GetEnvVarValue('LOCALAPPDATA')+'\GLeDitor\';
 
@@ -3784,6 +3787,65 @@ Begin
   end;
 End;
 
+procedure TEditorMainForm.FormDropFiles(Sender: TObject;
+  const FileNames: array of string);
+var OtherFileName:string;
+begin
+    //ShowMessage('dropped');
+
+  OtherFileName:=FileNames[0];
+  if (Salvato=True)  then begin
+      //carico la finestra attuale con il file
+       LoadFileIntoSynEdit(OtherFileName);
+       NomeFile := OtherFileName;
+       nfile := ExtractFileName(NomeFile);
+       Application.Title := nFile;
+       caption := 'GLeDitor - '+nFile;
+       StatusBar1.Panels[2].Text := NomeFile;
+       UpdateEnvironmentByFilename(NFile);
+       salvato := TRUE;
+       FileSalva.Enabled := false;
+   end
+   else begin
+    (* //carico il file in una nuova finestra
+     Executable := extractfilename(ParamStr(0));
+     if skew>0 then
+       OtherParameters := '-S='+inttostr(skew)+' -T='+getNextThemeBy(anytheme)+' "'+OtherFileName+'"'
+     else
+       OtherParameters := '-T='+getNextThemeBy(anytheme)+' "'+OtherFileName+'"';
+
+     if flag=false then begin
+       flag:=True;
+       if(directoryexists(cfgdir)) then begin
+         MyConf := TIniFile.Create(cfgfile);
+         Try
+           If EditorMainForm.WindowState=wsMaximized Then Begin
+             MyConf.writeinteger('Environment', 'left_corner',100);
+             MyConf.writeinteger('Environment', 'top_corner',100);
+             MyConf.writeinteger('Environment', 'win_width',700);
+             MyConf.writeinteger('Environment', 'win_height',500);
+           End
+           Else Begin
+             MyConf.writeinteger('Environment', 'left_corner',EditorMainForm.Left);
+             MyConf.writeinteger('Environment', 'top_corner',EditorMainForm.Top);
+             MyConf.writeinteger('Environment', 'win_width',700);
+             MyConf.writeinteger('Environment', 'win_height',500);
+           End;
+           MyConf.WriteString('Environment', 'win_state', 'normalwindow');
+          // MyConf.WriteString('Theme', 'theme_name', getNextThemeBy(anytheme));
+         Finally
+           myconf.Free;
+         End;
+       end;
+     end;
+     //application.ProcessMessages;
+     //Sleep(200);
+      OpenDocument(PChar(Executable)); { *Converted from ShellExecute* }
+     skew:=skew+20;    *)
+   end;
+
+end;
+
 
 Function TEditorMainForm.GetNextThemeBy(var ath:TGleditTheme): string;
 Begin
@@ -3947,8 +4009,7 @@ end;
 End;
 
 function TEditorMainForm.GetEnvVarValue(const VarName: string): string;
-var
-  BufSize: Integer;  // buffer size required for value
+//var  BufSize: Integer;  // buffer size required for value
 begin
   //// Get required buffer size (inc. terminal #0)
   //BufSize := GetEnvironmentVariable(PChar(VarName), nil, 0);
@@ -3960,7 +4021,11 @@ begin
   //    PChar(Result), BufSize);
   //end
   //else  // No such environment variable
-    Result := '';
+  try
+     Result :=  GetEnvironmentVariable(VarName);
+  except
+      Result := '';
+  end;
 end;
 
 Procedure TEditorMainForm.UnsetAllImages();

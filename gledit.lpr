@@ -1,4 +1,4 @@
-// GLeDitor v.2 for Win32 architecture - http://gleditor.sourceforge.net
+// GLeDitor v.3 for Apple Mac architecture
 program gledit;
 
 {$MODE Delphi}
