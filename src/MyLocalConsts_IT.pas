@@ -32,7 +32,7 @@ Begin
   S_Edit_Title := 'Modifica';
   S_Tools_Title := 'Strumenti';
   S_Syntax_Title := 'Sintassi';
-  S_Theme_Title := 'Tema';
+  S_Theme_Title := 'Tema colore';
   S_Help_Title := '?';
 
   // voci dei menù
@@ -77,7 +77,7 @@ Begin
   S_Theme_Rose := 'Rosa';
   S_Theme_Ocean := 'Oceano';
   S_Theme_Custom := 'Personalizzato';
-  S_Theme_ModCustom := 'Personalizza tema';
+  S_Theme_ModCustom := 'Personalizza tema colore';
 
   S_Language_Title := 'Lingua';
   S_Language_Italian := 'Italiano';
@@ -87,7 +87,7 @@ Begin
   S_Language_Turkish := 'Turco';
 
   S_Help_Manual := 'Manuale';
-  S_Help_Info := 'Informazioni su GLeDitor';
+  S_Help_Info := 'Informazioni su GLeDitor3';
   S_Help_Compiler := 'Manuale del compilatore';
   S_Help_License := 'Licenza';
   S_Help_Home := 'Homepage GLeDitor';
@@ -99,10 +99,10 @@ Begin
   S_ExtSearch := 'Ricerca estesa';
 
   // hints
-  S_Help_Manual_Hint := 'Manuale del GLeDitor';
-  S_Help_Info_Hint := 'Informazioni su GLeDitor';
+  S_Help_Manual_Hint := 'Manuale del GLeDitor3';
+  S_Help_Info_Hint := 'Informazioni su GLeDitor3';
   S_Help_Compiler_Hint := 'Manuale del compilatore';
-  S_Help_Home_Hint := 'Apre la homepage di GLeDitor';
+  S_Help_Home_Hint := 'Apre la homepage di GLeDitor3';
   S_Tools_Configure_Hint := 'Configura le chiamate esterne';
   S_Tools_Compile_Hint := 'Chiama il compilatore';
   S_Tools_Launch_Hint := 'Chiama il visualizzatore';
@@ -129,7 +129,7 @@ Begin
   S_About_2 := 'L''utilizzo, lo studio, la modifica, la copia e la diffusione sono incoraggiate.';
   S_About_3 := 'Icone di Yusuke Kamiyamane';//'Nello sviluppo sono stati utilizzati componenti liberi basati sulle librerie SynEdit.';
   S_About_link := 'http://p.yusukekamiyamane.com/';
-  S_About_Caption := 'Informazioni GLeDitor V.2';
+  S_About_Caption := 'Informazioni GLeDitor V.3';
 
   // configuration form
   S_Configuration_Caption := 'Configurazione dei compilatori';
@@ -142,7 +142,7 @@ Begin
   S_Basic_Comp_Label := 'Chiamata al compilatore Basic';
   S_Pascal_Comp_Label := 'Chiamata al compilatore Pascal';
   S_C_Comp_Label := 'Chiamata al compilatore C/C++';
-  S_Csharp_Comp_Label := 'Chiamata al compilatore C#';
+  //S_Csharp_Comp_Label := 'Chiamata al compilatore C#';
   S_SQL_Comp_Label := 'Chiamata SQL';
   S_Python_Comp_Label := 'Chiamata all''interprete Python';
 

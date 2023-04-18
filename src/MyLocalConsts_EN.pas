@@ -32,7 +32,7 @@ Begin
   S_Edit_Title  :=  'Edit';
   S_Tools_Title  :=  'Tools';
   S_Syntax_Title  :=  'Syntax';
-  S_Theme_Title  :=  'Theme';
+  S_Theme_Title  :=  'Color theme';
   S_Help_Title  :=  '?';
   // voci dei menù
   S_File_New  :=  'New';
@@ -76,7 +76,7 @@ Begin
   S_Theme_Rose  :=  'Rose';
   S_Theme_Ocean  :=  'Ocean';
   S_Theme_Custom  :=  'Custom';
-  S_Theme_ModCustom := 'Customize theme';
+  S_Theme_ModCustom := 'Customize color theme';
 
   S_Language_Title := 'Localization';
   S_Language_Italian := 'Italian';
@@ -99,10 +99,10 @@ Begin
   S_ExtSearch := 'Extended Search';
 
   // hints
-  S_Help_Manual_Hint  :=  'Manual of GLeDitor';
-  S_Help_Info_Hint  :=  'Info about GLeDitor';
+  S_Help_Manual_Hint  :=  'Manual of GLeDitor3';
+  S_Help_Info_Hint  :=  'Info about GLeDitor3';
   S_Help_Compiler_Hint  :=  'Manual of the compiler';
-  S_Help_Home_Hint  :=  'Go to the GLeDitor Homepage';
+  S_Help_Home_Hint  :=  'Go to the GLeDitor3 Homepage';
   S_Tools_Configure_Hint  :=  'Configure the external calls';
   S_Tools_Compile_Hint  :=  'Call the compiler';
   S_Tools_Launch_Hint  :=  'Call the viewer';
@@ -112,7 +112,7 @@ Begin
   S_File_OpenNW_Hint  :=  'Open file in new window';
   S_File_Save_Hint  :=  'Save the file';
   S_File_SaveAs_Hint  :=  'Save the file with a new name';
-  S_File_Close_Hint  :=  'Close GLeDitor';
+  S_File_Close_Hint  :=  'Close GLeDitor3';
   S_File_Print_Hint  :=  'Print the current file';
   S_Edit_SelectAll_Hint  :=  'Select all the text';
   S_Edit_Copy_Hint  :=  'Copy the selected text';
@@ -143,7 +143,7 @@ Begin
   S_Basic_Comp_Label := 'Basic compiler call';
   S_Pascal_Comp_Label := 'Pascal compiler call';
   S_C_Comp_Label := 'C/C++ compiler call';
-  S_Csharp_Comp_Label := 'C# compiler call';
+  //S_Csharp_Comp_Label := 'C# compiler call';
   S_SQL_Comp_Label := 'SQL call';
   S_Python_Comp_Label := 'Python engine call';
 

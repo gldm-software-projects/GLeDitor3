@@ -13,7 +13,7 @@ Unit Main;
 Interface
 
 Uses 
-Preferences, LCLIntf, LCLType, LMessages, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+Preferences, LCLIntf, LCLType, LMessages, Messages, Classes, Graphics, Controls, Forms, Dialogs,
 ComCtrls, StdCtrls, ActnList, ImgList, StdActns, Menus, ToolWin, Info, Printers,
 SynEdit, SynEditMiscClasses, SynHighlighterPas, SynEditHighlighter, SynHighlighterCSS,
 SynHighlighterXML, SynHighlighterCpp,  SynHighlighterJava, SynHighlighterSQL,
@@ -30,6 +30,7 @@ Type
   { TEditorMainForm }
 
   TEditorMainForm = Class(TForm)
+      Manuale1: TMenuItem;
     //SynCSSyn1: TSynCSSyn;
     SynXMLSyn1: TSynXMLSyn;       
     SynCppSyn1: TSynCppSyn;
@@ -65,6 +66,7 @@ Type
     Salvaconnome1: TMenuItem;
     N2: TMenuItem;
     Esci1: TMenuItem;
+    ToolButton19: TToolButton;
     Undo1: TMenuItem;
     Copia1: TMenuItem;
     Incolla1: TMenuItem;
@@ -213,6 +215,7 @@ Type
     procedure SynProposalCodeCompletion(var Value: string; SourceValue: string;
       var SourceStart, SourceEnd: TPoint; KeyChar: TUTF8Char; Shift: TShiftState
       );
+    procedure ToolBar1Click(Sender: TObject);
     Procedure UpdateEnvironmentByFilename(Nome: String);
     Procedure FileNuovoExecute(Sender: TObject);
     Procedure FileApriExecute(Sender: TObject);
@@ -355,7 +358,7 @@ Var
 
 Implementation
 
-Uses strutils, Utility;
+Uses strutils, Utility, sysutils;
 
 {$R *.lfm}
 
@@ -684,13 +687,17 @@ Begin
 
   //ToolBar1.ParentColor:=true;
   //toolbar1.Transparent:=false;
-  // configurazioni globali totali
+
+  // configurazioni
   //cfgdir := GetEnvVarValue('LOCALAPPDATA')+'\GLeDitor'; 
   //cfgfile := cfgdir+'\gledit.ini';
-  cfgdir := GetAppConfigDir(false);
-  cfgfile :=GetAppConfigFile(false);
   //if (directoryexists(cfgdir) = false) then
   //  CreateDir(cfgdir);
+
+  cfgdir := GetAppConfigDir(false);
+  cfgfile :=GetAppConfigFile(false);
+  if (directoryexists(cfgdir) = false) then   CreateDir(cfgdir);
+
   // altro
   CustomThemeYetSelected := false;
   SpeechCreation;
@@ -2182,8 +2189,8 @@ Begin
   commentPattern2:= '';  
   EditComment.Enabled:=True;
   EditUncomment.Enabled:=True; 
-  syntaxLabel.Caption := 'Javascript';   
-   if lingua<>nil then MnuSyntax.Caption :=  lingua.S_Syntax_Title+' (Javascript)';
+  syntaxLabel.Caption := 'JS/JSON';
+   if lingua<>nil then MnuSyntax.Caption :=  lingua.S_Syntax_Title+' (JS/JSON)';
 End;
    
 (**
@@ -2780,6 +2787,11 @@ End;
 procedure TEditorMainForm.SynProposalCodeCompletion(var Value: string;
   SourceValue: string; var SourceStart, SourceEnd: TPoint; KeyChar: TUTF8Char;
   Shift: TShiftState);
+begin
+
+end;
+
+procedure TEditorMainForm.ToolBar1Click(Sender: TObject);
 begin
 
 end;
