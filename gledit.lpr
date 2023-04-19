@@ -1,5 +1,4 @@
-// GLeDitor v.3 for Apple Mac architecture
-program gledit;
+program gledit; // GLeDitor v.3 for Apple Mac architecture
 
 {$MODE Delphi}
 
@@ -21,15 +20,15 @@ program gledit;
 
 uses
   Forms, Interfaces,
-  Main in 'src/Main.pas' {EditorMainForm},
-  Info in 'src/Info.pas' {AboutBox},
-  Preferences in 'src/Preferences.pas' {ConfigurationForm},
-  MyLocalConsts_IT in 'src/MyLocalConsts_IT.pas',
-  MyLocalConsts_EN in 'src/MyLocalConsts_EN.pas',
-  MyLocalConsts in 'src/MyLocalConsts.pas',
-  SyntaxEnum in 'src/SyntaxEnum.pas',
-  ThemeEnum in 'src/ThemeEnum.pas',
-  Utility in 'src/Utility.pas';
+  Main,
+  Info,
+  Preferences,
+  MyLocalConsts_IT,
+  MyLocalConsts_EN,
+  MyLocalConsts,
+  SyntaxEnum,
+  ThemeEnum,
+  Utility;
 
 {$R *.res}
 
