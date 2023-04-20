@@ -2,27 +2,28 @@
 <CONFIG>
   <ProjectOptions>
     <Version Value="11"/>
-    <PathDelim Value="\"/>
     <General>
       <SessionStorage Value="InProjectDir"/>
-      <Title Value="GLeDitor3"/>
       <MainUnit Value="0"/>
-      <UseAppBundle Value="False"/>
+      <Title Value="GLeDitor"/>
+      <Scaled Value="True"/>
       <ResourceType Value="res"/>
+      <UseXPManifest Value="True"/>
+      <XPManifest>
+        <DpiAware Value="True"/>
+        <TextName Value="gldm.GLeDitori3"/>
+        <TextDesc Value="Editor for MacOs"/>
+      </XPManifest>
+      <Icon Value="0"/>
     </General>
-    <i18n>
-      <EnableI18N LFM="False"/>
-    </i18n>
     <VersionInfo>
       <UseVersionInfo Value="True"/>
-      <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="3"/>
+      <Attributes pvaDebug="True" pvaPreRelease="True"/>
+      <StringTable CompanyName="gldm"/>
     </VersionInfo>
     <BuildModes Count="1">
-      <Item1 Name="Default" Default="True"/>      
-      <SharedMatrixOptions Count="1">
-        <Item1 ID="135753429667" Modes="Default" Type="IDEMacro" MacroName="LCLWidgetType" Value="cocoa"/>
-      </SharedMatrixOptions>
+      <Item1 Name="Default" Default="True"/>
     </BuildModes>
     <PublishOptions>
       <Version Value="2"/>
@@ -30,84 +31,85 @@
     </PublishOptions>
     <RunParams>
       <FormatVersion Value="2"/>
+      <Modes Count="0"/>
     </RunParams>
-    <RequiredPackages>
-      <Item>
+    <RequiredPackages Count="3">
+      <Item1>
         <PackageName Value="Printer4Lazarus"/>
-      </Item>
-      <Item>
+      </Item1>
+      <Item2>
         <PackageName Value="SynEdit"/>
-      </Item>
-      <Item>
+      </Item2>
+      <Item3>
         <PackageName Value="LCL"/>
-      </Item>
+      </Item3>
     </RequiredPackages>
-    <Units>
-      <Unit>
+    <Units Count="10">
+      <Unit0>
         <Filename Value="gledit.lpr"/>
         <IsPartOfProject Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="src\Main.pas"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="src/Main.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="EditorMainForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-      </Unit>
-      <Unit>
-        <Filename Value="src\Info.pas"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="src/Info.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="AboutBox"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-      </Unit>
-      <Unit>
-        <Filename Value="src\Preferences.pas"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="src/MyLocalConsts_EN.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="src/MyLocalConsts_IT.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="src/MyLocalConsts.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="src/Preferences.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ConfigurationForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-      </Unit>
-      <Unit>
-        <Filename Value="src\MyLocalConsts_IT.pas"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="src/SyntaxEnum.pas"/>
         <IsPartOfProject Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="src\MyLocalConsts_EN.pas"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="src/ThemeEnum.pas"/>
         <IsPartOfProject Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="src\MyLocalConsts.pas"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="src/Utility.pas"/>
         <IsPartOfProject Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="src\SyntaxEnum.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="src\ThemeEnum.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="src\Utility.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit>
+      </Unit9>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
     <Version Value="11"/>
-    <PathDelim Value="\"/>
+    <Target>
+      <Filename Value="GLeDit3"/>
+    </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
       <OtherUnitFiles Value="src"/>
       <UnitOutputDirectory Value="Build"/>
     </SearchPaths>
-    <Parsing>
-      <SyntaxOptions>
-        <SyntaxMode Value="Delphi"/>
-      </SyntaxOptions>
-    </Parsing>
     <Linking>
+      <Debugging>
+        <DebugInfoType Value="dsDwarf2Set"/>
+      </Debugging>
       <Options>
         <Win32>
           <GraphicApplication Value="True"/>
@@ -115,7 +117,24 @@
       </Options>
     </Linking>
     <Other>
-      <CustomOptions Value="-dBorland -dVer150 -dDelphi7 -dCompiler6_Up -dPUREPASCAL"/>
+      <CustomOptions Value="-dBorland
+-dVer150
+-dDelphi7
+-dCompiler6_Up
+-dPUREPASCAL"/>
     </Other>
   </CompilerOptions>
+  <Debugging>
+    <Exceptions Count="3">
+      <Item1>
+        <Name Value="EAbort"/>
+      </Item1>
+      <Item2>
+        <Name Value="ECodetoolError"/>
+      </Item2>
+      <Item3>
+        <Name Value="EFOpenError"/>
+      </Item3>
+    </Exceptions>
+  </Debugging>
 </CONFIG>

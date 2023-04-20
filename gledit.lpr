@@ -3,6 +3,7 @@ program gledit; // GLeDitor v.3 for Apple Mac architecture
 {$MODE Delphi}
 
 // GLeDitor 3 - Copyright (C) 2004 De Michelis Gian Luca
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation; either version 2 of the License.
@@ -18,7 +19,7 @@ program gledit; // GLeDitor v.3 for Apple Mac architecture
 
 
 uses
-  Forms, Interfaces,
+  Forms, printer4lazarus, Interfaces,
   Main,
   Info,
   Preferences,
@@ -31,9 +32,11 @@ uses
 
 {$R *.res}
 
-begin
+begin       
+  RequireDerivedFormResource:=True;
+  Application.Scaled:=True;
   Application.Initialize;
-  Application.Title := 'GLeDitor3';
+  Application.Title:='GLeDitor';
   Application.CreateForm(TEditorMainForm, EditorMainForm);
   Application.Run;
 end.

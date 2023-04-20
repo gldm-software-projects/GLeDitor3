@@ -1,7 +1,7 @@
 object AboutBox: TAboutBox
-  Left = 338
+  Left = 564
   Height = 250
-  Top = 279
+  Top = 128
   Width = 375
   BorderStyle = bsDialog
   Caption = 'Informazioni su GLeDitor 3'
@@ -13,7 +13,7 @@ object AboutBox: TAboutBox
   Font.Name = 'MS Sans Serif'
   OnCreate = FormCreate
   Position = poScreenCenter
-  LCLVersion = '2.2.6.0'
+  LCLVersion = '2.0.10.0'
   object Panel1: TPanel
     Left = 0
     Height = 209
@@ -29,9 +29,9 @@ object AboutBox: TAboutBox
     TabOrder = 0
     object ProductName: TLabel
       Left = 136
-      Height = 24
+      Height = 25
       Top = 16
-      Width = 88
+      Width = 99
       Caption = 'GLeDitor 3'
       Font.Color = clNavy
       Font.Height = -19
@@ -43,7 +43,7 @@ object AboutBox: TAboutBox
       Left = 192
       Height = 13
       Top = 46
-      Width = 140
+      Width = 148
       Caption = ' - <the GLeDitor reloaded>'
       Font.Color = clWindowText
       Font.Height = -11
@@ -53,9 +53,9 @@ object AboutBox: TAboutBox
     end
     object Label1: TLabel
       Left = 138
-      Height = 13
+      Height = 15
       Top = 76
-      Width = 9
+      Width = 12
       Caption = ' - '
       ParentColor = False
       WordWrap = True
@@ -947,9 +947,9 @@ object AboutBox: TAboutBox
     end
     object Label2: TLabel
       Left = 146
-      Height = 13
+      Height = 15
       Top = 144
-      Width = 9
+      Width = 12
       Caption = ' - '
       ParentColor = False
       WordWrap = True
