@@ -3,7 +3,6 @@ program gledit; // GLeDitor v.3 for Apple Mac architecture
 {$MODE Delphi}
 
 // GLeDitor 3 - Copyright (C) 2004 De Michelis Gian Luca
-//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation; either version 2 of the License.
