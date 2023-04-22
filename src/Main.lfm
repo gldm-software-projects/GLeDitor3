@@ -1,11 +1,11 @@
 object EditorMainForm: TEditorMainForm
-  Left = 267
-  Height = 522
-  Top = 74
+  Left = 295
+  Height = 525
+  Top = 91
   Width = 728
   AllowDropFiles = True
   Caption = 'GLeDitor'
-  ClientHeight = 522
+  ClientHeight = 525
   ClientWidth = 728
   Color = clWindow
   Constraints.MinHeight = 420
@@ -180,7 +180,7 @@ object EditorMainForm: TEditorMainForm
   object StatusBar1: TStatusBar
     Left = 0
     Height = 15
-    Top = 507
+    Top = 510
     Width = 728
     Anchors = [akRight, akBottom]
     Panels = <    
@@ -199,25 +199,25 @@ object EditorMainForm: TEditorMainForm
   end
   object MainPanel: TPanel
     Left = 0
-    Height = 477
+    Height = 480
     Top = 30
     Width = 728
     Align = alClient
-    ClientHeight = 477
+    ClientHeight = 480
     ClientWidth = 728
     TabOrder = 2
     object Splitter1: TSplitter
       Cursor = crVSplit
       Left = 1
       Height = 3
-      Top = 345
+      Top = 348
       Width = 726
       Align = alBottom
       ResizeAnchor = akBottom
     end
     inline synedit1: TSynEdit
       Left = 1
-      Height = 344
+      Height = 347
       Top = 1
       Width = 726
       Align = alClient
@@ -721,7 +721,7 @@ object EditorMainForm: TEditorMainForm
     object SearchPanel: TPanel
       Left = 1
       Height = 128
-      Top = 348
+      Top = 351
       Width = 726
       Align = alBottom
       ClientHeight = 128

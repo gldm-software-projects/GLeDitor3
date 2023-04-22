@@ -40,16 +40,11 @@ Type
     SynPHPSyn1: TSynPHPSyn;
     SynHTMLSyn1: TSynHTMLSyn;      
     SynVBSyn1: TSynVBSyn;
-    //SynEditPrint1: TSynEditPrint;
     ActionList1: TActionList;
-    FileNuovo: TAction;
-    /// clear the editor window
-    FileApri: TAction;
-    /// open a text file
-    FileSalva: TAction;
-    /// save the current file
-    FileSalvaConNome: TAction;
-    /// "save as"
+    FileNuovo: TAction;  /// clear the editor window
+    FileApri: TAction;   /// open a text file
+    FileSalva: TAction;  /// save the current file
+    FileSalvaConNome: TAction; /// "save as"
     FileEsci: TAction;
     HelpInfo: TAction;
     EditTaglia: TEditCut;
@@ -172,7 +167,6 @@ Type
     btn1: TBitBtn;
     SynCssSyn1: TSynCssSyn;
     Css1: TMenuItem;
-    //SynEditSearch1: TSynEditSearch;
     Default1: TMenuItem;
     SynProposal: TSynCompletion;
     AddSnippet: TAction;
@@ -306,22 +300,16 @@ Type
     Private 
     { Private declarations }
       BlackFont: boolean;
-      Salvato: boolean;
-      /// true if the current file is just saved or unmodifyied, false otherwise
-      SearchOpened : boolean;
-      /// true if the "extended search" is showing
-      CustomThemeYetSelected : boolean;
-      /// true if the user has choosen a custom theme
-      CustomThemeDarkCol : string;
-      /// the dark color of the current (custom) theme
-      CustomThemeLightCol : string;
-      /// the light color of the current (custom) theme
+      Salvato: boolean;  /// true if the current file is just saved or unmodifyied, false otherwise
+      SearchOpened : boolean;  /// true if the "extended search" is on-screen
+      CustomThemeYetSelected : boolean;  /// true if the user has choosen a custom theme
+      CustomThemeDarkCol : string;   /// the dark color of the current (custom) theme
+      CustomThemeLightCol : string;  /// the light color of the current (custom) theme
       linguaggio : TGleditLanguage;
       estensione : string;
       commentPattern,commentPattern2 : string;
       SearchListXposition, SearchListYposition: integer;
-      SearchListSelStart : integer;
-      //Splitter: Tsplitter;
+      SearchListSelStart : integer; //Splitter: Tsplitter;
       Procedure SpeechCreation;
       Procedure SpeechDestruction;
       Procedure GoToEditorRow;
@@ -338,7 +326,6 @@ Type
       Function AnsiFileCheck(const FileName: string): boolean;
       Procedure CustomSaveTextFile(const filename:string; const source :TStrings);
       function CanSafelyCleanupCurrentDocument:Boolean;
-     // procedure WMDROPFILES(var msg : TWMDropFiles) ; message WM_DROPFILES; 
     Public
     { Public declarations }
       darkcol, lightcol: string;
@@ -350,13 +337,10 @@ Type
     Protected 
       Procedure CreateParams(Var Params: TCreateParams);
       override;
-      //Procedure WMSyscommand(Var Message: TWmSysCommand);
-      //message WM_SYSCOMMAND;
   End;
 
 Var 
-  EditorMainForm: TEditorMainForm;
-  /// the running istance of the editor class form
+  EditorMainForm: TEditorMainForm; /// the running istance of the editor class form
 
 Implementation
 
