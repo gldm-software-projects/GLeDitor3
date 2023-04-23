@@ -6,7 +6,8 @@ Main unit of the GLeDitor project
 
 Unit Main;
 
-{$MODE Delphi}
+{$MODE objfpc}{$H+}
+{$modeswitch objectivec1}
 
 // GLeDitor v.3 for Apple Mac architecture
 
@@ -14,7 +15,7 @@ Interface
 
 Uses 
 Preferences, LCLIntf, LCLType, LMessages, Messages, Classes, Graphics, Controls, Forms, Dialogs,
-ComCtrls, StdCtrls, ActnList, ImgList, StdActns, Menus, ToolWin, Info, Printers,
+ComCtrls, StdCtrls, ActnList, ImgList, StdActns, Menus, ToolWin, Printers,
 SynEdit, SynEditMiscClasses, SynHighlighterPas, SynEditHighlighter, SynHighlighterCSS,
 SynHighlighterXML, SynHighlighterCpp,  SynHighlighterJava, SynHighlighterSQL,
 SynHighlighterPython,  SynHighlighterJScript, SynHighlighterPHP, SynHighlighterHTML,
@@ -30,8 +31,7 @@ Type
   { TEditorMainForm }
 
   TEditorMainForm = Class(TForm)
-      Manuale1: TMenuItem;
-    //SynCSSyn1: TSynCSSyn;
+    Manuale1: TMenuItem;
     SynXMLSyn1: TSynXMLSyn;       
     SynCppSyn1: TSynCppSyn;
     SynJavaSyn1: TSynJavaSyn;
@@ -272,7 +272,7 @@ Type
     Procedure MnuLocaleItalianClick(Sender: TObject);
     Procedure EditExtendedSearchExecute(Sender: TObject);
     Procedure SearchPanelResize(Sender: TObject);
-    Procedure FormClose(Sender: TObject; Var Action: TCloseAction);
+    Procedure FormClose(Sender: TObject; Var myAction: TCloseAction);
     Procedure SearchBtnClick(Sender: TObject);
     Procedure ExtendedSearchEditKeyPress(Sender: TObject; Var Key: Char);
     Procedure SearchResultListDblClick(Sender: TObject);
@@ -282,7 +282,7 @@ Type
     Procedure BitBtn1Click(Sender: TObject);
     Procedure SearchPanelCanResize(Sender: TObject;
                                    Var NewWidth, NewHeight: Integer;
-                                   Var Resize: Boolean);
+                                   Var canResize: Boolean);
     Procedure SearchResultListMouseEnter(Sender: TObject);
     procedure opzionale1Click(Sender: TObject);
     procedure AddSnippetExecute(Sender: TObject);
@@ -344,16 +344,29 @@ Var
 
 Implementation
 
-Uses strutils, Utility, sysutils;
+Uses strutils, Utility, sysutils, Process, CocoaAll;
 
 {$R *.lfm}
 
 Procedure TEditorMainForm.FileNuovaFinestraExecute(Sender: TObject);
-Var Executable,OtherParameters: string;
+Var Executable: string;
     MyConf: TIniFile;
+    aProcess: TProcess;
 Begin
   Executable := extractfilename(ParamStr(0));
-  OtherParameters := '-S=20 -T='+getNextTheme();
+ // OtherParameters := '-S=20';'-T='+getNextTheme();
+       
+  AProcess := TProcess.Create(nil);
+                    
+  AProcess.InheritHandles := False;
+  AProcess.Options := [];
+  AProcess.ShowWindow := swoShow;
+  AProcess.Executable:='/usr/bin/open';
+  AProcess.Parameters.Add('-n');
+  AProcess.Parameters.Add(Executable);
+  AProcess.Parameters.Add('--args');
+  AProcess.Parameters.Add('-S=20');
+  AProcess.Parameters.Add('-T='+getNextTheme());
   if(directoryexists(cfgdir)) then begin
   MyConf := TIniFile.Create(cfgfile);
   Try
@@ -375,7 +388,9 @@ Begin
     MyConf.Free;
   End;
   end;
-   OpenDocument(PChar(Executable)); { *Converted from ShellExecute* }
+   //OpenDocument(PChar(Executable)); { *Converted from ShellExecute* }
+
+   AProcess.Execute;
 End;
 
 Procedure TEditorMainForm.FileNuovoExecute(Sender: TObject);
@@ -417,7 +432,7 @@ end;
 
 function TEditorMainForm.AnsiFileCheck(const FileName: string): boolean;
 var myFile : TextFile;
-    text: string;
+    myText: string;
 begin
   Result:=True;
   AssignFile(myFile, filename);
@@ -425,8 +440,8 @@ begin
     Reset(myFile);
     // Display the file contents
     while not Eof(myFile) do begin
-      ReadLn(myFile, text);
-      if (Length(text)>0) and (ord(char(text[1]))>=128 ) then  begin
+      ReadLn(myFile, myText);
+      if (Length(myText)>0) and (ord(char(myText[1]))>=128 ) then  begin
         Result:=False;
         Break;
       end;
@@ -647,12 +662,13 @@ Begin
 End;
 
 Procedure TEditorMainForm.HelpInfoExecute(Sender: TObject);
-Var Aboutbox: taboutbox;
+//Var Aboutbox: taboutbox;
 Begin
-  Aboutbox := taboutbox.create(self);
-  Aboutbox.color := tcolor(strtoint(darkcol));
-  Aboutbox.Panel1.Color := tcolor(strtoint(lightcol));
-  AboutBox.ShowModal;
+  NSApp.orderFrontStandardAboutPanel(nil);
+  //Aboutbox := taboutbox.create(self);
+  //Aboutbox.color := tcolor(strtoint(darkcol));
+  //Aboutbox.Panel1.Color := tcolor(strtoint(lightcol));
+  //AboutBox.ShowModal;
 End;
 
 Procedure TEditorMainForm.FormCreate(Sender: TObject);
@@ -2422,7 +2438,7 @@ Begin
   End;
 End;
 
-Procedure TEditorMainForm.FormClose(Sender: TObject; Var Action: TCloseAction);
+Procedure TEditorMainForm.FormClose(Sender: TObject; Var myAction: TCloseAction);
 Begin
   SpeechDestruction;
 End;
@@ -2535,8 +2551,8 @@ End;
 
 Procedure TEditorMainForm.LoadTotalConf();
 var myconf: TIniFile;
-    windowstate, MyWordWrap: string;
-    formleft, formtop, formwidth, formheight: integer;
+    myWindowState, MyWordWrap: string;
+    formLeft, formTop, formWidth, formHeight: integer;
 Begin
   if (fileexists(cfgfile) or directoryexists(cfgdir)) then begin
     MyConf := TIniFile.Create(cfgfile);
@@ -2612,8 +2628,8 @@ Begin
         //synedit1.Gutter.Color:=clWhite;
       end;
 
-      windowstate := readstring('Environment', 'win_state','normalwindow');
-      If windowstate='maximized' Then
+      myWindowState := readstring('Environment', 'win_state','normalwindow');
+      If myWindowState='maximized' Then
         EditorMainForm.WindowState := wsMaximized
       Else Begin
         formleft := readinteger('Environment', 'left_corner',200);
@@ -2698,9 +2714,9 @@ Begin
 End;
 
 Procedure TEditorMainForm.SearchPanelCanResize(Sender: TObject; Var NewWidth,
-                                               NewHeight: Integer; Var Resize: Boolean);
+                                               NewHeight: Integer; Var canResize: Boolean);
 Begin
-  Resize := true;
+  canResize := true;
 End;
 
 Procedure TEditorMainForm.SearchPanelResize(Sender: TObject);

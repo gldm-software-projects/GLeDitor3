@@ -21,7 +21,6 @@ program gledit; // GLeDitor v.3 for Apple Mac architecture
 uses
   Forms, printer4lazarus, Interfaces,
   Main,
-  Info,
   Preferences,
   MyLocalConsts_IT,
   MyLocalConsts_EN,

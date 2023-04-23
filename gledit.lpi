@@ -50,7 +50,7 @@
         <PackageName Value="LCL"/>
       </Item3>
     </RequiredPackages>
-    <Units Count="10">
+    <Units Count="9">
       <Unit0>
         <Filename Value="gledit.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -63,43 +63,36 @@
         <ResourceBaseClass Value="Form"/>
       </Unit1>
       <Unit2>
-        <Filename Value="src/Info.pas"/>
+        <Filename Value="src/MyLocalConsts_EN.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="AboutBox"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
       </Unit2>
       <Unit3>
-        <Filename Value="src/MyLocalConsts_EN.pas"/>
+        <Filename Value="src/MyLocalConsts_IT.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit3>
       <Unit4>
-        <Filename Value="src/MyLocalConsts_IT.pas"/>
+        <Filename Value="src/MyLocalConsts.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit4>
       <Unit5>
-        <Filename Value="src/MyLocalConsts.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit5>
-      <Unit6>
         <Filename Value="src/Preferences.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="ConfigurationForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="src/SyntaxEnum.pas"/>
+        <IsPartOfProject Value="True"/>
       </Unit6>
       <Unit7>
-        <Filename Value="src/SyntaxEnum.pas"/>
+        <Filename Value="src/ThemeEnum.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit7>
       <Unit8>
-        <Filename Value="src/ThemeEnum.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit8>
-      <Unit9>
         <Filename Value="src/Utility.pas"/>
         <IsPartOfProject Value="True"/>
-      </Unit9>
+      </Unit8>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

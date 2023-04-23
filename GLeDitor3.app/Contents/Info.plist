@@ -9,8 +9,10 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>*</string>
+				<string>pas</string>
 			</array>
+			<key>CFBundleTypeName</key>
+			<string>Pascal sources</string>
 			<key>CFBundleTypeOSTypes</key>
 			<array>
 				<string>fold</string>
@@ -18,13 +20,13 @@
 				<string>****</string>
 			</array>
 			<key>CFBundleTypeRole</key>
-			<string>Viewer</string>
+			<string>Editor</string>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>GLeDitor3</string>
 	<key>CFBundleIconFile</key>
-	<string>logo</string>
+	<string>logo.icns</string>
 	<key>CFBundleIdentifier</key>
 	<string>it.gldm.GLeDitor3</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -38,10 +40,12 @@
 	<key>CFBundleSignature</key>
 	<string>GLeD</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>1.0.0</string>
 	<key>CSResourcesFileMapped</key>
 	<true/>
 	<key>NSHighResolutionCapable</key>
 	<true/>
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright 2023, Gian Luca De Michelis</string>
 </dict>
 </plist>
