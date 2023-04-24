@@ -1,5 +1,5 @@
 (**
-Main unit of the GLeDitor project
+Main unit of the GLeDitor 3 project
 
 @author De Michelis Gian Luca
 *)
@@ -310,6 +310,7 @@ Type
       commentPattern,commentPattern2 : string;
       SearchListXposition, SearchListYposition: integer;
       SearchListSelStart : integer; //Splitter: Tsplitter;
+      procedure LoadFileInNewWindow(myfilename:string);
       Procedure SpeechCreation;
       Procedure SpeechDestruction;
       Procedure GoToEditorRow;
@@ -349,11 +350,11 @@ Uses strutils, Utility, sysutils, Process, CocoaAll;
 {$R *.lfm}
 
 Procedure TEditorMainForm.FileNuovaFinestraExecute(Sender: TObject);
-Var Executable: string;
+Var MyBundleName: string;
     MyConf: TIniFile;
     aProcess: TProcess;
 Begin
-  Executable := extractfilename(ParamStr(0));
+  MyBundleName := extractfilename(ParamStr(0));
  // OtherParameters := '-S=20';'-T='+getNextTheme();
        
   AProcess := TProcess.Create(nil);
@@ -363,7 +364,7 @@ Begin
   AProcess.ShowWindow := swoShow;
   AProcess.Executable:='/usr/bin/open';
   AProcess.Parameters.Add('-n');
-  AProcess.Parameters.Add(Executable);
+  AProcess.Parameters.Add(MyBundleName);
   AProcess.Parameters.Add('--args');
   AProcess.Parameters.Add('-S=20');
   AProcess.Parameters.Add('-T='+getNextTheme());
@@ -452,10 +453,9 @@ begin
 end;
 
 procedure TEditorMainForm.LoadFileIntoSynEdit(afilename:string);
-var dlen,slen:integer;
-    ms:TMemoryStream;
+var
+  //dlen,slen:integer;   ms:TMemoryStream;    ptr: PWideChar;
     s:string;
-    ptr: PWideChar;
 begin
   if (UTF8FileBOM(afilename)) then begin
     SynEdit1.Lines.LoadFromFile(afilename);
@@ -703,7 +703,7 @@ Begin
   // altro
   CustomThemeYetSelected := false;
   SpeechCreation;
-  exepath := extractfilepath(ParamStr(0));
+  exepath := GetAppPath;//extractfilepath(ParamStr(0));
   //SearchOpened:=false;
   SearchPanel.Visible := SearchOpened;
   // Ora: ho passato parametri al gledit ??
@@ -718,6 +718,10 @@ Begin
       else If ParamStr(I) <> '' Then Begin
         if (caricato=false) then Begin
             NomeFile := ParamStr(I);
+            if (Pos(NomeFile,PathDelim)=0) then begin
+               //troviamo il percorso
+               nomefile:=GetAppPath+PathDelim+NomeFile;
+            end;
             If FileExists(NomeFile) Then Begin
               // ho passato un nome di file valido??
               //Synedit1.Lines.LoadFromFile(NomeFile);
@@ -2218,7 +2222,7 @@ End;
 Procedure TEditorMainForm.HelpManualeExecute(Sender: TObject);
 Var  manuale : string;
 Begin
-  manuale := exepath+'manuale.PDF';
+  //manuale := exepath+'manuale.PDF';
   If FileExists(manuale) Then
      OpenDocument(PChar(manuale)) { *Converted from ShellExecute* }
   Else
@@ -3399,7 +3403,15 @@ Begin
 End;
 
 Procedure TEditorMainForm.FormShow(Sender: TObject);
+var i:integer;
 Begin
+  if ParamCount>0 then Begin
+    for I := 1 to ParamCount do Begin
+        synedit1.Lines.add(ParamStr(I));
+    end;
+  end;
+  //synedit1.lines.add(GetMainBundlePath());
+  //synedit1.lines.add(GetAppPath());
   synedit1.SetFocus;
 End;
 
@@ -3623,12 +3635,58 @@ Begin
 End;
 
 Procedure TEditorMainForm.FileApriNuovaFinestraExecute(Sender: TObject);
-Var Executable, OtherFileName: string;
-    myconf: TIniFile;
 Begin
   If OpenDialog1.Execute Then Begin
-    Executable := extractfilename(ParamStr(0));
-    OtherFileName := '-S=20 -T='+getNextTheme()+' "'+OpenDialog1.FileName+'"';
+ //synedit1.lines.add(OpenDialog1.FileName);
+ //synedit1.lines.add(OpenDialog1.)
+   LoadFileInNewWindow(''''+OpenDialog1.FileName+'''');
+ 
+
+    //MyBundleName := GetMainBundlePath;//extractfilename(ParamStr(0));
+    ////OtherFileName := '-S=20 -T='+getNextTheme()+' "'+OpenDialog1.FileName+'"';
+    //if(directoryexists(cfgdir)) then begin
+    //  MyConf := TIniFile.Create(cfgfile);
+    //  Try
+    //    If EditorMainForm.WindowState=wsMaximized Then Begin
+    //      MyConf.writeinteger('Environment', 'left_corner',100);
+    //      MyConf.writeinteger('Environment', 'top_corner',100);
+    //      MyConf.writeinteger('Environment', 'win_width',700);
+    //      MyConf.writeinteger('Environment', 'win_height',500);
+    //    End
+    //    Else Begin
+    //      MyConf.writeinteger('Environment', 'left_corner',EditorMainForm.Left);
+    //      MyConf.writeinteger('Environment', 'top_corner',EditorMainForm.Top);
+    //      MyConf.writeinteger('Environment', 'win_width',EditorMainForm.Width);
+    //      MyConf.writeinteger('Environment', 'win_height',EditorMainForm.Height);
+    //    End;
+    //    MyConf.WriteString('Environment', 'win_state', 'normalwindow');
+    //   // MyConf.WriteString('Theme', 'theme_name', getNextTheme);
+    //  Finally
+    //    myconf.Free;
+    //  End;
+    //end;
+    ////OpenDocument(PChar(Executable)); { *Converted from ShellExecute* }
+    //AProcess := TProcess.Create(nil);
+    //
+    //AProcess.InheritHandles := False;
+    //AProcess.Options := [];
+    //AProcess.ShowWindow := swoShow;
+    //AProcess.Executable:='/usr/bin/open';
+    //AProcess.Parameters.Add('-n');
+    //AProcess.Parameters.Add(MyBundleName);
+    //AProcess.Parameters.Add('--args');
+    //AProcess.Parameters.Add('-S=20');
+    //AProcess.Parameters.Add('-T='+getNextTheme());
+    //AProcess.Parameters.Add(''''+OpenDialog1.FileName+'''');
+  End;
+End;
+
+procedure TEditorMainForm.LoadFileInNewWindow(myfilename:string);
+Var MyBundleName: string;
+    myconf: TIniFile;
+    aProcess: TProcess;
+begin
+    MyBundleName := GetMainBundlePath;
     if(directoryexists(cfgdir)) then begin
       MyConf := TIniFile.Create(cfgfile);
       Try
@@ -3650,9 +3708,21 @@ Begin
         myconf.Free;
       End;
     end;
-     OpenDocument(PChar(Executable)); { *Converted from ShellExecute* }
-  End;
-End;
+    AProcess := TProcess.Create(nil);
+
+    AProcess.InheritHandles := False;
+    AProcess.Options := [];
+    AProcess.ShowWindow := swoShow;
+    AProcess.Executable:='/usr/bin/open';
+    AProcess.Parameters.Add('-n');
+    AProcess.Parameters.Add(MyBundleName);
+    AProcess.Parameters.Add('--args');
+    AProcess.Parameters.Add('-S=20');
+    AProcess.Parameters.Add('-T='+getNextTheme());
+    AProcess.Parameters.Add(myfilename);
+ 
+    AProcess.Execute;
+end;
 
 Function TEditorMainForm.GetNextTheme(): string;
 Begin
@@ -3695,10 +3765,11 @@ begin
        caption := 'GLeDitor - '+nFile;
        StatusBar1.Panels[2].Text := NomeFile;
        UpdateEnvironmentByFilename(NFile);
-       salvato := TRUE;
-       FileSalva.Enabled := false;
+       salvato := True;
+       FileSalva.Enabled := False;
    end
    else begin
+     LoadFileInNewWindow(OtherFileName);
     (* //carico il file in una nuova finestra
      Executable := extractfilename(ParamStr(0));
      if skew>0 then
@@ -3735,7 +3806,6 @@ begin
       OpenDocument(PChar(Executable)); { *Converted from ShellExecute* }
      skew:=skew+20;    *)
    end;
-
 end;
 
 

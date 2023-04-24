@@ -1,18 +1,19 @@
 Unit Utility;
 
-{$MODE Delphi}
+{$MODE objfpc}{$H+}
+{$modeswitch objectivec1}
 
 Interface
 
 Uses Forms;
-Function EndsWith(filename:String; desinenza:String): Boolean;
-Procedure SetVistaFonts(Const AForm: TCustomForm);
-Function IsWindowsVista: Boolean;
-Function CompositingEnabled: Boolean;
+function EndsWith(filename:String; desinenza:String): Boolean;
+function CompositingEnabled: Boolean;
+function GetMainBundlePath: string;
+function GetAppPath: string;
 
 Implementation
 
-Uses SysUtils, LCLIntf, LCLType, LMessages;
+Uses SysUtils, LCLIntf, LCLType, LMessages, CocoaAll, CocoaUtils;
 
 Function EndsWith(filename:String; desinenza:String): Boolean;
 var i :smallint;
@@ -25,18 +26,17 @@ Begin
   end;
 End;
 
-Function IsWindowsVista: Boolean;
-Begin
-  Result := false;
-End;
+function GetMainBundlePath: string;
+begin
+  Result := NSStringToString(NSBundle.mainBundle.bundlePath);
+end;
 
-Procedure SetVistaFonts(Const AForm: TCustomForm);
-Begin
-  //nothing
-End;
+function GetAppPath: string;
+begin
+  Result := ExtractFileDir(GetMainBundlePath);
+end;
 
-Function CompositingEnabled: Boolean;
-
+function CompositingEnabled: Boolean;
 Begin
   Result := False;
 End;

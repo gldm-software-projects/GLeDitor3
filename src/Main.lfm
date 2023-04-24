@@ -1350,7 +1350,9 @@ object EditorMainForm: TEditorMainForm
   object OpenDialog1: TOpenDialog
     Title = 'Apri file'
     DefaultExt = '.c'
+    FileName = '/Users/gldm/dev/pascal/GLeDitor3/GraphicResources'
     Filter = 'Tutti i file|*|Codice c|*.c; *.h; *.cpp|Java|*.java|Pascal / Delphi|*.pas; *.dpr|Codice basic|*.bas; *.vb|Php|*.php|Html|*.htm; *.html|Sql|*.sql|Xml|*.xml; *.plist|c#|*.cs|Javascript|*.js|CSS|*.css|Testo|*.txt; *.me; *.dfm; *.lfm'
+    InitialDir = '/Users/gldm/dev/pascal/GLeDitor3/'
     left = 152
     top = 40
   end

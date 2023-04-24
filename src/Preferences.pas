@@ -304,7 +304,7 @@ End;
 Procedure TConfigurationForm.FormCreate(Sender: TObject);
 Begin
   //   setLocale(lingua);
-  Utility.SetVistaFonts(self);
+ // Utility.SetVistaFonts(self);
   color := tcolor(strtoint(EditorMainForm.lightcol));
   TitleLabel.Color:= tcolor(strtoint(EditorMainForm.darkcol));
   panel1.color := tcolor(strtoint(EditorMainForm.darkcol));
