@@ -453,11 +453,13 @@ begin
 end;
 
 procedure TEditorMainForm.LoadFileIntoSynEdit(afilename:string);
-var
+//var
   //dlen,slen:integer;   ms:TMemoryStream;    ptr: PWideChar;
-    s:string;
+//   s:string;
 begin
-  if (UTF8FileBOM(afilename)) then begin
+SynEdit1.Lines.LoadFromFile(afilename);
+ (*
+   if (UTF8FileBOM(afilename)) then begin
     SynEdit1.Lines.LoadFromFile(afilename);
     s := synedit1.Lines[0];
     synedit1.Lines[0]:=Copy(s,4,Length(s)-3);
@@ -467,26 +469,8 @@ begin
   end
   else begin
     SynEdit1.Lines.LoadFromFile(afilename);
-    (*ms := TMemoryStream.Create;
-    try
-      ms.LoadFromFile(afilename);
-      ptr := PWideChar(ms.Memory);
-      dlen := ms.Size div SizeOf(WideChar);
-      if (dlen >= 1) and (PWord(ptr)^ = $FEFF) then
-      begin
-        Inc(ptr);
-        Dec(dlen);
-      end;
-      slen := WideCharToMultiByte(0, 0, ptr, dlen, nil, 0, nil, nil);
-      if slen > 0 then begin
-        SetLength(s, slen);
-        WideCharToMultiByte(0, 0, ptr, dlen, PAnsiChar(s), slen, nil, nil);
-      end;
-      SynEdit1.Text := s;
-    finally
-      ms.Free;
-    end;  *)
   end;
+*)
 end;
 
 
@@ -718,7 +702,7 @@ Begin
       else If ParamStr(I) <> '' Then Begin
         if (caricato=false) then Begin
             NomeFile := ParamStr(I);
-            if (Pos(NomeFile,PathDelim)=0) then begin
+            if (Pos(PathDelim,NomeFile)=0) then begin
                //troviamo il percorso
                nomefile:=GetAppPath+PathDelim+NomeFile;
             end;
@@ -3405,11 +3389,13 @@ End;
 Procedure TEditorMainForm.FormShow(Sender: TObject);
 var i:integer;
 Begin
+  (*
   if ParamCount>0 then Begin
     for I := 1 to ParamCount do Begin
         synedit1.Lines.add(ParamStr(I));
     end;
   end;
+  *)
   //synedit1.lines.add(GetMainBundlePath());
   //synedit1.lines.add(GetAppPath());
   synedit1.SetFocus;
