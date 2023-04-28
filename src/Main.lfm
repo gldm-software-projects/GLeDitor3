@@ -1,7 +1,7 @@
 object EditorMainForm: TEditorMainForm
-  Left = 295
+  Left = 421
   Height = 525
-  Top = 91
+  Top = 112
   Width = 728
   AllowDropFiles = True
   Caption = 'GLeDitor'
