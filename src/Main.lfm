@@ -7,15 +7,15 @@ object EditorMainForm: TEditorMainForm
   Caption = 'GLeDitor'
   ClientHeight = 525
   ClientWidth = 728
-  Color = clWindow
+  Color = clSilver
   Constraints.MinHeight = 420
   Constraints.MinWidth = 728
   DefaultMonitor = dmDesktop
   DockSite = True
   Font.CharSet = ANSI_CHARSET
-  Font.Color = clWindowText
+  Font.Color = clBlack
   Font.Height = -11
-  Font.Name = 'Segoe UI'
+  Font.Name = 'Tahoma'
   Menu = MainMenu1
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
@@ -165,7 +165,7 @@ object EditorMainForm: TEditorMainForm
       Font.CharSet = ANSI_CHARSET
       Font.Color = clGrayText
       Font.Height = -11
-      Font.Name = 'Segoe UI'
+      Font.Name = 'Tahoma'
       Layout = tlCenter
       ParentColor = False
       ParentFont = False
@@ -221,7 +221,7 @@ object EditorMainForm: TEditorMainForm
       Top = 1
       Width = 726
       Align = alClient
-      Font.Color = clWindowText
+      Font.Color = clBlack
       Font.Height = -13
       Font.Name = 'Courier New'
       Font.Pitch = fpFixed
@@ -730,23 +730,23 @@ object EditorMainForm: TEditorMainForm
       TabOrder = 1
       object SearchResultLabel: TLabel
         Left = 271
-        Height = 15
+        Height = 13
         Top = 4
-        Width = 76
+        Width = 80
         Caption = 'Ricerca estesa'
         Font.CharSet = ANSI_CHARSET
-        Font.Color = clWindowText
+        Font.Color = clBlack
         Font.Height = -11
-        Font.Name = 'Segoe UI'
+        Font.Name = 'Tahoma'
         Font.Style = [fsBold]
         ParentColor = False
         ParentFont = False
       end
       object FindLabel: TLabel
         Left = 4
-        Height = 15
+        Height = 13
         Top = 25
-        Width = 34
+        Width = 30
         Caption = 'Trova:'
         ParentColor = False
       end
@@ -759,7 +759,7 @@ object EditorMainForm: TEditorMainForm
         Anchors = [akTop, akLeft, akRight, akBottom]
         DragCursor = crArrow
         DragKind = dkDock
-        Font.Color = clWindowText
+        Font.Color = clBlack
         Font.Height = -11
         Font.Name = 'Courier New'
         HideSelection = False
@@ -786,7 +786,7 @@ object EditorMainForm: TEditorMainForm
       end
       object ExtendedSearchEdit: TEdit
         Left = 43
-        Height = 22
+        Height = 15
         Top = 22
         Width = 165
         OnKeyPress = ExtendedSearchEditKeyPress
@@ -796,7 +796,7 @@ object EditorMainForm: TEditorMainForm
         Left = 14
         Height = 18
         Top = 49
-        Width = 154
+        Width = 93
         Caption = 'Maiuscole/minuscole'
         TabOrder = 3
       end
@@ -804,7 +804,7 @@ object EditorMainForm: TEditorMainForm
         Left = 14
         Height = 18
         Top = 72
-        Width = 132
+        Width = 83
         Caption = 'Solo parole intere'
         TabOrder = 4
       end
@@ -1557,7 +1557,7 @@ object EditorMainForm: TEditorMainForm
     top = 256
   end
   object FontDialog1: TFontDialog
-    Font.Color = clWindowText
+    Font.Color = clBlack
     Font.Height = -11
     Font.Name = 'Tahoma'
     MinFontSize = 7

@@ -2663,7 +2663,7 @@ end;
 
 procedure TEditorMainForm.ToolBar1Click(Sender: TObject);
 begin
-
+  //TODO: remove this procedure
 end;
 
 Procedure TEditorMainForm.SearchBtnClick(Sender: TObject);
@@ -2963,14 +2963,14 @@ var riga:string;
     indice,indice2:Integer;   
     blockstart,blockend:TPoint;
     I: Integer;
-begin            (*
+begin
   if commentPattern2='' then begin
     // prima tipologia: metto il comment pattern in testa
     if (synedit1.SelText>'') then begin
       blockstart:=synedit1.BlockBegin;
       blockend:=synedit1.BlockEnd;
-      indice  := synedit1.BlockBegin.Line;
-      indice2 := synedit1.BlockEnd.Line;
+      indice  := synedit1.BlockBegin.y;
+      indice2 := synedit1.BlockEnd.y;
       if indice2>indice then begin
         // ho del testo selezionato (più righe)
         for I := (indice-1) to (indice2-1) do begin
@@ -3002,10 +3002,10 @@ begin            (*
     if (synedit1.SelText>'') then begin  
       blockstart:=synedit1.BlockBegin;
       blockend:=synedit1.BlockEnd;
-      indice:=synedit1.BlockBegin.Line;
-      indice2 :=synedit1.BlockEnd.Line;
+      indice:=synedit1.BlockBegin.y;
+      indice2 :=synedit1.BlockEnd.y;
 
-      if (StartsText(commentPattern, Trim(synedit1.Lines[indice-1]))) or (EndsText(commentPattern2, Trim(synedit1.Lines[indice2-1]))) then begin
+      if (AnsiStartsText(commentPattern, Trim(synedit1.Lines[indice-1]))) or (AnsiEndsText(commentPattern2, Trim(synedit1.Lines[indice2-1]))) then begin
         // non faccio niente: la zona è già commentata!!
       end
       else begin
@@ -3034,7 +3034,7 @@ begin            (*
       // non ho del testo selezionato: prendo la riga in cui ho il cursore
 
       indice:=synedit1.CaretY-1;
-      if (StartsText(commentPattern, Trim(synedit1.Lines[indice]))) or (EndsText(commentPattern2, Trim(synedit1.Lines[indice]))) then begin
+      if (AnsiStartsText(commentPattern, Trim(synedit1.Lines[indice]))) or (AnsiEndsText(commentPattern2, Trim(synedit1.Lines[indice]))) then begin
         // non faccio niente: la zona è già commentata!!
       end
       else begin
@@ -3047,7 +3047,7 @@ begin            (*
     end;
   end;     
  // synedit1.Refresh;
- *)
+
 end;
 
 procedure TEditorMainForm.EditCRLFExecute(Sender: TObject);

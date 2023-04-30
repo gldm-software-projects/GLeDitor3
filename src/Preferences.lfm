@@ -8,22 +8,22 @@ object ConfigurationForm: TConfigurationForm
   ClientHeight = 295
   ClientWidth = 504
   Color = 12303291
-  Font.Color = clWindowText
+  Font.Color = clBlack
   Font.Height = -11
-  Font.Name = 'MS Sans Serif'
+  Font.Name = 'Tahoma'
   OnCreate = FormCreate
   Position = poOwnerFormCenter
   LCLVersion = '2.0.10.0'
   object TitleLabel: TLabel
     Left = 32
-    Height = 24
+    Height = 25
     Top = 10
-    Width = 249
+    Width = 245
     Alignment = taCenter
     Caption = 'Configurazione compilatori'
     Font.Color = clNavy
     Font.Height = -21
-    Font.Name = 'Arial'
+    Font.Name = 'Tahoma'
     ParentColor = False
     ParentFont = False
   end
@@ -41,20 +41,20 @@ object ConfigurationForm: TConfigurationForm
       Height = 195
       Top = 1
       Width = 486
-      ActivePage = TabPython
+      ActivePage = GeneralSheet
       Align = alClient
-      TabIndex = 6
+      TabIndex = 0
       TabOrder = 0
       OnChange = MyPageControlChange
       object GeneralSheet: TTabSheet
         Caption = 'General'
-        ClientHeight = 169
-        ClientWidth = 478
+        ClientHeight = 156
+        ClientWidth = 480
         object BrowserLabel: TLabel
           Left = 16
           Height = 13
           Top = 16
-          Width = 38
+          Width = 39
           Caption = 'Browser'
           ParentColor = False
         end
@@ -62,7 +62,7 @@ object ConfigurationForm: TConfigurationForm
           Left = 16
           Height = 13
           Top = 112
-          Width = 42
+          Width = 44
           Caption = 'Directory'
           ParentColor = False
         end
@@ -70,7 +70,7 @@ object ConfigurationForm: TConfigurationForm
           Left = 16
           Height = 13
           Top = 64
-          Width = 44
+          Width = 46
           Caption = 'Parametri'
           ParentColor = False
         end
@@ -148,21 +148,21 @@ object ConfigurationForm: TConfigurationForm
         end
         object BrowserEdit: TEdit
           Left = 8
-          Height = 21
+          Height = 22
           Top = 32
           Width = 345
           TabOrder = 0
         end
         object BrowserDirEdit: TEdit
           Left = 8
-          Height = 21
+          Height = 22
           Top = 128
           Width = 345
           TabOrder = 1
         end
         object BrowserParEdit: TEdit
           Left = 8
-          Height = 21
+          Height = 22
           Top = 80
           Width = 345
           TabOrder = 2
@@ -874,9 +874,9 @@ object ConfigurationForm: TConfigurationForm
         ImageIndex = 6
         object Py_CompLabel: TLabel
           Left = 16
-          Height = 15
+          Height = 13
           Top = 16
-          Width = 94
+          Width = 86
           Caption = 'Interprete Python'
           ParentColor = False
         end
@@ -918,17 +918,17 @@ object ConfigurationForm: TConfigurationForm
         end
         object Py_ParLabel: TLabel
           Left = 16
-          Height = 15
+          Height = 13
           Top = 64
-          Width = 51
+          Width = 46
           Caption = 'Parametri'
           ParentColor = False
         end
         object Py_helpLabel: TLabel
           Left = 16
-          Height = 15
+          Height = 13
           Top = 112
-          Width = 56
+          Width = 53
           Caption = 'File di help'
           ParentColor = False
         end
@@ -970,9 +970,9 @@ object ConfigurationForm: TConfigurationForm
         end
         object Py_dirLabel: TLabel
           Left = 264
-          Height = 15
+          Height = 13
           Top = 16
-          Width = 49
+          Width = 44
           Caption = 'Directory'
           ParentColor = False
         end
