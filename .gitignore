@@ -4,6 +4,15 @@
 # Ignora la cartella backup
 backup
 
+# Ignora la cartella con i file compilati/i file object
+Build
+GLeDitor3
+
+# Ignora i file di backup di gleditor
+*~
+
 # Ignora tutti i file di risorse e di configurazioni locali lazarus
 *.res
 *.lps
+
+# Altri specifici file da ignorare...
