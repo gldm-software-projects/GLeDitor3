@@ -683,7 +683,7 @@ Begin
 
   // configurazioni
   //cfgdir := GetEnvVarValue('LOCALAPPDATA')+'\GLeDitor'; 
-  //cfgfile := cfgdir+'\gledit.ini';
+  //cfgfile := cfgdir+pathdelim+'gledit.ini';
   //if (directoryexists(cfgdir) = false) then
   //  CreateDir(cfgdir);
 
@@ -2402,7 +2402,7 @@ begin
       // adesso devo verificare che...
       if (MessageDlg(lingua.S_Alert_RemoveAllSnippet,mtCustom,[mbOk, mbNo],0)=mrOk) then begin
         if(directoryexists(cfgdir)) then begin
-          snIniFilename:=cfgdir+'\snippets.ini';
+          snIniFilename:=cfgdir+pathdelim+'snippets.cfg';
           snIni := TIniFile.Create(snIniFilename);
           try
             snini.EraseSection(inttostr(ord(linguaggio)));
@@ -3192,7 +3192,7 @@ begin
         if(directoryexists(cfgdir)) then begin
           visualized := StringReplace(visualized,' ','§§§',[rfReplaceAll]);
           visualized := StringReplace(visualized,'=','§UU',[rfReplaceAll]);
-          snIniFilename:=cfgdir+'\snippets.ini';
+          snIniFilename:=cfgdir+pathdelim+'snippets.cfg';
           snIni := TIniFile.Create(snIniFilename);
           try
             snIni.WriteString(inttostr(ord(linguaggio)),visualized,snippet);
@@ -3214,7 +3214,7 @@ var visualized,snIniFilename,sectionName:string;
     nome,valore:string;
 begin
   if(directoryexists(cfgdir)) then begin
-    snIniFilename:=cfgdir+'\snippets.ini';
+    snIniFilename:=cfgdir+pathdelim+'snippets.cfg';
     snIni := TIniFile.Create(snIniFilename);
     sectionName:=  inttostr(ord(la));
     try
@@ -3876,38 +3876,39 @@ Begin
 End;
 
 procedure TEditorMainForm.ShowSnippetFileExecute(Sender: TObject);
-Var Executable, OtherFileName: string;
-    myconf: TIniFile;
+Var OtherFileName: string;
+    //myconf: TIniFile;
 Begin
-  OtherFileName := '"'+cfgdir+'\snippets.ini'+'"';
-  if(Fileexists(cfgdir+'\snippets.ini')) then begin
-  Executable := extractfilename(ParamStr(0));
-  if(directoryexists(cfgdir)) then begin
-    MyConf := TIniFile.Create(cfgfile);
-    Try
-      If EditorMainForm.WindowState=wsMaximized Then Begin
-        MyConf.writeinteger('Environment', 'left_corner',100);
-        MyConf.writeinteger('Environment', 'top_corner',100);
-        MyConf.writeinteger('Environment', 'win_width',700);
-        MyConf.writeinteger('Environment', 'win_height',500);
-      End
-      Else Begin
-        MyConf.writeinteger('Environment', 'left_corner',EditorMainForm.Left+50);
-        MyConf.writeinteger('Environment', 'top_corner',EditorMainForm.Top+50);
-        MyConf.writeinteger('Environment', 'win_width',EditorMainForm.Width);
-        MyConf.writeinteger('Environment', 'win_height',EditorMainForm.Height);
-      End;
-      MyConf.WriteString('Environment', 'win_state', 'normalwindow');
-      MyConf.WriteString('Theme', 'theme_name', getNextTheme);
-    Finally
-      myconf.Free;
-    End;
+  OtherFileName := cfgdir+PathDelim+'snippets.cfg';
+  if (Fileexists(OtherFileName)) then begin
+    LoadFileInNewWindow(OtherFileName);
+  ////Executable := extractfilename(ParamStr(0));
+  ////if(directoryexists(cfgdir)) then begin
+  ////  MyConf := TIniFile.Create(cfgfile);
+  ////  Try
+  ////    If EditorMainForm.WindowState=wsMaximized Then Begin
+  ////      MyConf.writeinteger('Environment', 'left_corner',100);
+  ////      MyConf.writeinteger('Environment', 'top_corner',100);
+  ////      MyConf.writeinteger('Environment', 'win_width',700);
+  ////      MyConf.writeinteger('Environment', 'win_height',500);
+  ////    End
+  ////    Else Begin
+  ////      MyConf.writeinteger('Environment', 'left_corner',EditorMainForm.Left+50);
+  ////      MyConf.writeinteger('Environment', 'top_corner',EditorMainForm.Top+50);
+  ////      MyConf.writeinteger('Environment', 'win_width',EditorMainForm.Width);
+  ////      MyConf.writeinteger('Environment', 'win_height',EditorMainForm.Height);
+  ////    End;
+  ////    MyConf.WriteString('Environment', 'win_state', 'normalwindow');
+  ////    MyConf.WriteString('Theme', 'theme_name', getNextTheme);
+  ////  Finally
+  ////    myconf.Free;
+  ////  End;
+  ////end;
+  //// //OpenDocument(PChar(Executable)); { *Converted from ShellExecute* }
+  end
+  else begin
+    ShowMessage(lingua.S_Alert_MissingSnippetFile);
   end;
-   OpenDocument(PChar(Executable)); { *Converted from ShellExecute* }
-end
-else begin
-  ShowMessage(lingua.S_Alert_MissingSnippetFile);
-end;
 End;
 
 function TEditorMainForm.GetEnvVarValue(const VarName: string): string;
