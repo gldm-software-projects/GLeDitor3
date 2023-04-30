@@ -86,11 +86,11 @@ Begin
   S_Language_German := 'Tedesco';
   S_Language_Turkish := 'Turco';
 
-  S_Help_Manual := 'Manuale';
+  S_Help_Manual := 'Manuale utente';
   S_Help_Info := 'Informazioni su GLeDitor3';
   S_Help_Compiler := 'Manuale del compilatore';
   S_Help_License := 'Licenza';
-  S_Help_Home := 'Homepage GLeDitor';
+  S_Help_Home := 'Wiki GLeDitor';
 
   S_Row := 'Riga';    
   S_Col  :=  'Col.';
@@ -102,7 +102,7 @@ Begin
   S_Help_Manual_Hint := 'Manuale del GLeDitor3';
   S_Help_Info_Hint := 'Informazioni su GLeDitor3';
   S_Help_Compiler_Hint := 'Manuale del compilatore';
-  S_Help_Home_Hint := 'Apre la homepage di GLeDitor3';
+  S_Help_Home_Hint := 'Apre la wiki di GLeDitor3';
   S_Tools_Configure_Hint := 'Configura le chiamate esterne';
   S_Tools_Compile_Hint := 'Chiama il compilatore';
   S_Tools_Launch_Hint := 'Chiama il visualizzatore';

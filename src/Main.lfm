@@ -786,7 +786,7 @@ object EditorMainForm: TEditorMainForm
       end
       object ExtendedSearchEdit: TEdit
         Left = 43
-        Height = 15
+        Height = 22
         Top = 22
         Width = 165
         OnKeyPress = ExtendedSearchEditKeyPress
@@ -930,6 +930,7 @@ object EditorMainForm: TEditorMainForm
     object HelpManuale: TAction
       Category = '?'
       Caption = 'Manuale'
+      DisableIfNoHandler = False
       Hint = 'Manuale del GLeDitor'
       ImageIndex = 15
       OnExecute = HelpManualeExecute
@@ -1011,6 +1012,7 @@ object EditorMainForm: TEditorMainForm
     object HelpHomePage: TAction
       Category = '?'
       Caption = 'HelpHomePage'
+      DisableIfNoHandler = False
       ImageIndex = 16
       OnExecute = HelpHomePageExecute
     end
@@ -1329,12 +1331,9 @@ object EditorMainForm: TEditorMainForm
       Caption = '?'
       object Manuale1: TMenuItem
         Action = HelpManuale
-        Visible = False
       end
       object HelpHomePage1: TMenuItem
         Action = HelpHomePage
-        Enabled = False
-        Visible = False
       end
       object Info1: TMenuItem
         Action = HelpInfo

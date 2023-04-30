@@ -2206,13 +2206,15 @@ End;
 
 
 Procedure TEditorMainForm.HelpManualeExecute(Sender: TObject);
-Var  manuale : string;
+Var  manualUrl : string;
 Begin
+  manualUrl := 'https://gldm-software-projects.github.io/GLeDitor3/';
+   OpenDocument(PChar(manualUrl));
   //manuale := exepath+'manuale.PDF';
-  If FileExists(manuale) Then
-     OpenDocument(PChar(manuale)) { *Converted from ShellExecute* }
-  Else
-    ShowMessage(lingua.S_Alert_manual);
+//  If FileExists(manuale) Then
+//     OpenDocument(PChar(manuale)) { *Converted from ShellExecute* }
+//  Else
+//    ShowMessage(lingua.S_Alert_manual);
 End;  
 
 Procedure TEditorMainForm.StrumentiCompilaExecute(Sender: TObject);
@@ -2792,18 +2794,18 @@ var riga:string;
     I:Integer; //,posit: Integer;
     blockstart,blockend:TPoint;
     succeeded:Boolean;
-begin    (*
+begin    
   if commentPattern2='' then begin
     // prima tipologia: rimuovo il comment pattern in testa
     if (synedit1.SelText>'') then begin
       blockstart:=synedit1.BlockBegin;
       blockend:=synedit1.BlockEnd;
-      indice:=synedit1.BlockBegin.Line;
-      indice2 :=synedit1.BlockEnd.Line;
+      indice:=synedit1.BlockBegin.y;
+      indice2 :=synedit1.BlockEnd.y;
       if indice2>indice then begin
         // ho del testo selezionato (più righe)
         for I := (indice-1) to (indice2-1) do begin
-          if  (StartsText(commentPattern, trim(synedit1.Lines[I]))) then begin
+          if  (AnsiStartsText(commentPattern, trim(synedit1.Lines[I]))) then begin
             //posit := Pos(commentPattern, synedit1.Lines[I]);
              riga :=  StringReplace(synedit1.Lines[I], commentPattern, '', []);
             //riga := Delete(synedit1.Lines[I],Posit,Length(commentPattern));
@@ -2815,7 +2817,7 @@ begin    (*
       else begin
         // ho del testo selezionato (una sola riga)
         //indice:=synedit1.CaretY-1;
-        if (StartsText(commentPattern, Trim(synedit1.Lines[indice-1]))) then begin
+        if (AnsiStartsText(commentPattern, Trim(synedit1.Lines[indice-1]))) then begin
              riga :=  StringReplace(synedit1.Lines[indice-1], commentPattern, '', []);
 //            posit := Pos(commentPattern, synedit1.Lines[indice-1]);
 //            riga := Delete( synedit1.Lines[indice-1],Posit,Length(commentPattern));
@@ -2830,7 +2832,7 @@ begin    (*
     else begin
       // non ho del testo selezionato: prendo la riga in cui ho il cursore
       indice:=synedit1.CaretY-1;
-      if (StartsText(commentPattern, Trim(synedit1.Lines[indice]))) then begin
+      if (AnsiStartsText(commentPattern, Trim(synedit1.Lines[indice]))) then begin
          riga :=  StringReplace(synedit1.Lines[indice], commentPattern, '', []);
          //posit := Pos(commentPattern, synedit1.Lines[indice]);
          //riga := Delete( synedit1.Lines[indice],Posit,Length(commentPattern));
@@ -2846,13 +2848,13 @@ begin    (*
       // HO DEL TESTO SELEZIONATO
       blockstart:=synedit1.BlockBegin;
       blockend:=synedit1.BlockEnd;
-      indice:=synedit1.BlockBegin.Line;
-      indice2 :=synedit1.BlockEnd.Line;
+      indice:=synedit1.BlockBegin.y;
+      indice2 :=synedit1.BlockEnd.y;
       if indice2>indice then begin
         // ho del testo selezionato (più righe)
         succeeded:=False;
         for I := indice-1 downto 0 do begin
-          if (StartsText(commentPattern, Trim(synedit1.Lines[I]))) then begin
+          if (AnsiStartsText(commentPattern, Trim(synedit1.Lines[I]))) then begin
             riga:=StringReplace(Trim(synedit1.Lines[I]),commentPattern,'',[rfIgnoreCase]);
             synedit1.Lines[I]:=riga;
             succeeded:=True;
@@ -2865,7 +2867,7 @@ begin    (*
 //              synedit1.Lines[indice-1]:=riga;
 //          end;
         if succeeded then for I := indice2-1 to SynEdit1.lines.Count-1 do  begin
-          if (EndsText(commentPattern2, Trim(synedit1.Lines[I]))) then begin
+          if (AnsiEndsText(commentPattern2, Trim(synedit1.Lines[I]))) then begin
             riga:=StringReplace(Trim(synedit1.Lines[I]),commentPattern2,'',[rfIgnoreCase]);
             synedit1.Lines[I]:=riga;
             Break;
@@ -2881,7 +2883,7 @@ begin    (*
         // ho del testo selezionato (una sola riga)
         succeeded:=false;
         for I := indice-1 downto 0 do begin
-          if (StartsText(commentPattern, Trim(synedit1.Lines[I]))) then begin
+          if (AnsiStartsText(commentPattern, Trim(synedit1.Lines[I]))) then begin
             riga:=StringReplace(Trim(synedit1.Lines[I]),commentPattern,'',[rfIgnoreCase]);
             synedit1.Lines[I]:=riga;
             succeeded:=True;
@@ -2889,7 +2891,7 @@ begin    (*
           end;
         end;
         if succeeded then for I := indice-1 to SynEdit1.lines.Count-1 do  begin
-          if (EndsText(commentPattern2, Trim(synedit1.Lines[I]))) then begin
+          if (AnsiEndsText(commentPattern2, Trim(synedit1.Lines[I]))) then begin
             riga:=StringReplace(Trim(synedit1.Lines[I]),commentPattern2,'',[rfIgnoreCase]);
             synedit1.Lines[I]:=riga;
             Break;
@@ -2905,7 +2907,7 @@ begin    (*
       succeeded:=false;
       indice:=synedit1.CaretY-1;
       for I := indice downto 0 do begin
-        if (StartsText(commentPattern, Trim(synedit1.Lines[I]))) then begin
+        if (AnsiStartsText(commentPattern, Trim(synedit1.Lines[I]))) then begin
           riga:=StringReplace(Trim(synedit1.Lines[I]),commentPattern,'',[rfIgnoreCase]);
           synedit1.Lines[I]:=riga;   
           succeeded:=True;
@@ -2913,7 +2915,7 @@ begin    (*
         end;
       end;
       if succeeded then for I := indice to SynEdit1.lines.Count-1 do  begin
-        if (EndsText(commentPattern2, Trim(synedit1.Lines[I]))) then begin
+        if (AnsiEndsText(commentPattern2, Trim(synedit1.Lines[I]))) then begin
           riga:=StringReplace(Trim(synedit1.Lines[I]),commentPattern2,'',[rfIgnoreCase]);
           synedit1.Lines[I]:=riga;
           Break;
@@ -2921,7 +2923,7 @@ begin    (*
       end;     
       synedit1.Refresh;
     end;
-  end;     *)
+  end;     
 end;
 
 Procedure TEditorMainForm.EditUndoExecute(Sender: TObject);
@@ -3384,7 +3386,7 @@ End;
 Procedure TEditorMainForm.HelpHomePageExecute(Sender: TObject);
 Var GLeDitorUrl: string;
 Begin
-  GLeDitorUrl := 'http://gleditor.sourceforge.net';
+  GLeDitorUrl := 'https://github.com/gldm-software-projects/GLeDitor3/wiki';
    OpenDocument(PChar(GLeDitorUrl)); { *Converted from ShellExecute* }
 End;
 
@@ -3646,43 +3648,6 @@ Begin
    //synedit1.lines.add(OpenDialog1.FileName);
    //synedit1.lines.add(OpenDialog1.)
    LoadFileInNewWindow(OpenDialog1.FileName);
-
-    //MyBundleName := GetMainBundlePath;//extractfilename(ParamStr(0));
-    ////OtherFileName := '-S=20 -T='+getNextTheme()+' "'+OpenDialog1.FileName+'"';
-    //if(directoryexists(cfgdir)) then begin
-    //  MyConf := TIniFile.Create(cfgfile);
-    //  Try
-    //    If EditorMainForm.WindowState=wsMaximized Then Begin
-    //      MyConf.writeinteger('Environment', 'left_corner',100);
-    //      MyConf.writeinteger('Environment', 'top_corner',100);
-    //      MyConf.writeinteger('Environment', 'win_width',700);
-    //      MyConf.writeinteger('Environment', 'win_height',500);
-    //    End
-    //    Else Begin
-    //      MyConf.writeinteger('Environment', 'left_corner',EditorMainForm.Left);
-    //      MyConf.writeinteger('Environment', 'top_corner',EditorMainForm.Top);
-    //      MyConf.writeinteger('Environment', 'win_width',EditorMainForm.Width);
-    //      MyConf.writeinteger('Environment', 'win_height',EditorMainForm.Height);
-    //    End;
-    //    MyConf.WriteString('Environment', 'win_state', 'normalwindow');
-    //   // MyConf.WriteString('Theme', 'theme_name', getNextTheme);
-    //  Finally
-    //    myconf.Free;
-    //  End;
-    //end;
-    ////OpenDocument(PChar(Executable)); { *Converted from ShellExecute* }
-    //AProcess := TProcess.Create(nil);
-    //
-    //AProcess.InheritHandles := False;
-    //AProcess.Options := [];
-    //AProcess.ShowWindow := swoShow;
-    //AProcess.Executable:='/usr/bin/open';
-    //AProcess.Parameters.Add('-n');
-    //AProcess.Parameters.Add(MyBundleName);
-    //AProcess.Parameters.Add('--args');
-    //AProcess.Parameters.Add('-S=20');
-    //AProcess.Parameters.Add('-T='+getNextTheme());
-    //AProcess.Parameters.Add(''''+OpenDialog1.FileName+'''');
   End;
 End;
 
@@ -3775,41 +3740,6 @@ begin
    end
    else begin
      LoadFileInNewWindow(OtherFileName);
-    (* //carico il file in una nuova finestra
-     Executable := extractfilename(ParamStr(0));
-     if skew>0 then
-       OtherParameters := '-S='+inttostr(skew)+' -T='+getNextThemeBy(anytheme)+' "'+OtherFileName+'"'
-     else
-       OtherParameters := '-T='+getNextThemeBy(anytheme)+' "'+OtherFileName+'"';
-
-     if flag=false then begin
-       flag:=True;
-       if(directoryexists(cfgdir)) then begin
-         MyConf := TIniFile.Create(cfgfile);
-         Try
-           If EditorMainForm.WindowState=wsMaximized Then Begin
-             MyConf.writeinteger('Environment', 'left_corner',100);
-             MyConf.writeinteger('Environment', 'top_corner',100);
-             MyConf.writeinteger('Environment', 'win_width',700);
-             MyConf.writeinteger('Environment', 'win_height',500);
-           End
-           Else Begin
-             MyConf.writeinteger('Environment', 'left_corner',EditorMainForm.Left);
-             MyConf.writeinteger('Environment', 'top_corner',EditorMainForm.Top);
-             MyConf.writeinteger('Environment', 'win_width',700);
-             MyConf.writeinteger('Environment', 'win_height',500);
-           End;
-           MyConf.WriteString('Environment', 'win_state', 'normalwindow');
-          // MyConf.WriteString('Theme', 'theme_name', getNextThemeBy(anytheme));
-         Finally
-           myconf.Free;
-         End;
-       end;
-     end;
-     //application.ProcessMessages;
-     //Sleep(200);
-      OpenDocument(PChar(Executable)); { *Converted from ShellExecute* }
-     skew:=skew+20;    *)
    end;
 end;
 

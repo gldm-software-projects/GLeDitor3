@@ -89,7 +89,7 @@ Begin
   S_Help_Info  :=  'About GLeDitor';
   S_Help_Compiler  :=  'Compiler manual';
   S_Help_License  :=  'License';
-  S_Help_Home  :=  'Homepage GLeDitor';
+  S_Help_Home  :=  'GLeDitor wiki';
 
   S_Row  :=  'Row';
   S_Col  :=  'Col.';
@@ -99,10 +99,10 @@ Begin
   S_ExtSearch := 'Extended Search';
 
   // hints
-  S_Help_Manual_Hint  :=  'Manual of GLeDitor3';
+  S_Help_Manual_Hint  :=  'User manual of GLeDitor3';
   S_Help_Info_Hint  :=  'Info about GLeDitor3';
   S_Help_Compiler_Hint  :=  'Manual of the compiler';
-  S_Help_Home_Hint  :=  'Go to the GLeDitor3 Homepage';
+  S_Help_Home_Hint  :=  'Go to the GLeDitor3 wiki';
   S_Tools_Configure_Hint  :=  'Configure the external calls';
   S_Tools_Compile_Hint  :=  'Call the compiler';
   S_Tools_Launch_Hint  :=  'Call the viewer';
