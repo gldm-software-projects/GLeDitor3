@@ -124,21 +124,13 @@ object EditorMainForm: TEditorMainForm
       Top = 2
       Action = StrumentiCompila
     end
-    object ToolButton15: TToolButton
-      Left = 431
-      Height = 28
-      Top = 2
-      Caption = 'ToolButton15'
-      ImageIndex = 10
-      Style = tbsSeparator
-    end
     object ToolButton4: TToolButton
-      Left = 439
+      Left = 431
       Top = 2
       Action = HelpCompilatore
     end
     object ToolButton10: TToolButton
-      Left = 470
+      Left = 462
       Height = 28
       Top = 2
       Caption = 'ToolButton10'
@@ -146,7 +138,7 @@ object EditorMainForm: TEditorMainForm
       Style = tbsSeparator
     end
     object CheckBox1: TToolButton
-      Left = 478
+      Left = 470
       Top = 2
       Caption = 'Read Only'
       ImageIndex = 27

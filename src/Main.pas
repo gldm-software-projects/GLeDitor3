@@ -89,7 +89,6 @@ Type
     StrumentiEditaConfigurazione: TAction;
     EditaConfigurazione: TMenuItem;
     ToolButton14: TToolButton;
-    ToolButton15: TToolButton;
     N3: TMenuItem;
     EditSostituisci: TAction;
     Sostituisci: TMenuItem;
@@ -667,6 +666,7 @@ var I,S:Integer;
     temaPassato:string;
     caricato:Boolean;
 Begin
+  syntaxLabel.Caption:='';
   BlackFont:=true;
   caricato:=false;
   S:=0;
@@ -2757,14 +2757,17 @@ End;
 
 Procedure TEditorMainForm.SetColors();
 Begin
-  synedit1.Color := tcolor(strtoint(lightcol));
+  synedit1.Color := TColor(strtoint(lightcol));
   //synedit1.Gutter.Color := tcolor(strtoint(darkcol));
-  //toolbar1.Color := tcolor(strtoint(darkcol));
-  searchpanel.Color := tcolor(strtoint(darkcol));
-  searchresultlist.Color :=  tcolor(strtoint(lightcol));
-  ExtendedSearchEdit.Color := tcolor(strtoint(lightcol));
-  statusbar1.Color := tcolor(strtoint(lightcol));
-  mainPanel.Color := tcolor(strtoint(darkcol));
+  synedit1.Gutter.Color := clWhite;//tcolor(strtoint(lightcol));
+  toolbar1.Color := TColor(strtoint(lightcol));
+  //toolbutton17.Color:=toolbar1.Color ;
+  //ToolButton17.Color:=clGreen;
+  SearchPanel.Color := TColor(strtoint(darkcol));
+  SearchResultList.Color :=  TColor(strtoint(lightcol));
+  ExtendedSearchEdit.Color := TColor(strtoint(lightcol));
+  statusbar1.Color := TColor(strtoint(lightcol));
+  mainPanel.Color := TColor(strtoint(darkcol));
 End;
 
 procedure TEditorMainForm.SetFontExecute(Sender: TObject);
@@ -3333,7 +3336,7 @@ Begin
     CustomThemeLightCol := lightcol;
     theme := gtCustom;
     // rgbtocolor
-    setcolors;
+    SetColors;
     UnsetAllThemeImages();
     custom1.ImageIndex := 1;
     CustomThemeYetSelected := true;
@@ -3432,7 +3435,7 @@ Begin
   MnuEdit.Caption :=  locale.S_Edit_Title;
   MnuTools.Caption :=  locale.S_Tools_Title;
   if(syntaxLabel.Caption>'')  then
-     MnuSyntax.Caption :=  locale.S_Syntax_Title+' ('+syntaxlabel.Caption+')'
+     MnuSyntax.Caption :=  locale.S_Syntax_Title+' ('+syntaxLabel.Caption+')'
   else
     MnuSyntax.Caption :=  locale.S_Syntax_Title;
   MnuTheme.Caption :=  locale.S_Theme_Title;

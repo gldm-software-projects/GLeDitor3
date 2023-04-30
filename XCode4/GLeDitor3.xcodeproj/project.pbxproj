@@ -278,7 +278,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				CODE_SIGN_ENTITLEMENTS = GLeDitor3/GLeDitor3.entitlements;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(LAZ_PROJECT_DIR)/$(LAZ_TARGET_EXEC).app/Contents/Info.plist";
 				LAZBUILD_OPTIONS = "--build-mode=Debug";
@@ -296,7 +295,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				CODE_SIGN_ENTITLEMENTS = GLeDitor3/GLeDitor3.entitlements;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(LAZ_PROJECT_DIR)/$(LAZ_TARGET_EXEC).app/Contents/Info.plist";
 				LAZBUILD_OPTIONS = "--build-mode=Release ";
