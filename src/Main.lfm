@@ -1378,6 +1378,7 @@ object EditorMainForm: TEditorMainForm
     DefaultFilter = 'Java Files (*.java)|*.java'
     Enabled = False
     CommentAttri.Foreground = clPurple
+    DocumentAttri.Foreground = clPurple
     InvalidAttri.Foreground = clRed
     KeyAttri.Foreground = clBlue
     NumberAttri.Foreground = clBlue

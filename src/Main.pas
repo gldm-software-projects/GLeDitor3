@@ -331,13 +331,13 @@ Type
     { Public declarations }
       darkcol, lightcol: string;
       theme: TGleditTheme;
-      NomeFile, NFile: string;
+      CurrentEditedFileName, NFile: string;
       exepath, cfgfile, cfgdir: string;
       LocaleCode : string;
       inglese,italiano,lingua: TLocalizedConstContainer;
     Protected 
-      Procedure CreateParams(Var Params: TCreateParams);
-      override;
+      //Procedure CreateParams(Var Params: TCreateParams);
+      //override;
   End;
 
 Var 
@@ -401,11 +401,11 @@ Begin
     //  FileSalvaConNomeExecute(self);
     synedit1.Clear;   
     SynEdit1.lines.LineBreak:=#13#10;
-    NomeFile := 'noname';
+    CurrentEditedFileName := 'noname';
     NFile := 'noname';
     application.Title := NFile;
     caption := 'GLeDitor - '+nFile;
-    StatusBar1.Panels[2].Text := NomeFile;
+    StatusBar1.Panels[2].Text := CurrentEditedFileName;
     StatusBar1.Panels[0].Text := lingua.S_Row;  
     StatusBar1.Panels[1].Text := lingua.S_Col;
     salvato := TRUE;
@@ -457,19 +457,27 @@ procedure TEditorMainForm.LoadFileIntoSynEdit(afilename:string);
 //   s:string;
 begin
   SynEdit1.Lines.LoadFromFile(afilename);
- (*
-   if (UTF8FileBOM(afilename)) then begin
-    SynEdit1.Lines.LoadFromFile(afilename);
-    s := synedit1.Lines[0];
-    synedit1.Lines[0]:=Copy(s,4,Length(s)-3);
-  end
-  else if (AnsiFileCheck(afilename)) then  begin
-    SynEdit1.Lines.LoadFromFile(afilename);
-  end
-  else begin
-    SynEdit1.Lines.LoadFromFile(afilename);
-  end;
-*)
+
+  ////// if (UTF8FileBOM(afilename)) then begin
+  //////  SynEdit1.Lines.LoadFromFile(afilename);
+  //////  s := synedit1.Lines[0];
+  //////  synedit1.Lines[0]:=Copy(s,4,Length(s)-3);
+  //////end
+  //////else if (AnsiFileCheck(afilename)) then  begin
+  //////  SynEdit1.Lines.LoadFromFile(afilename);
+  //////end
+  //////else begin
+  //////  SynEdit1.Lines.LoadFromFile(afilename);
+  //////end;
+
+  CurrentEditedFileName := afilename;
+  nfile := ExtractFileName(CurrentEditedFileName);
+  Application.Title := nFile;
+  caption := 'GLeDitor - '+nFile;
+  StatusBar1.Panels[2].Text := CurrentEditedFileName;
+  UpdateEnvironmentByFilename(NFile);
+  salvato := TRUE;
+  FileSalva.Enabled := false;
 end;
 
 
@@ -478,14 +486,14 @@ Begin
   if CanSafelyCleanupCurrentDocument then begin
     If OpenDialog1.Execute Then Begin
       LoadFileIntoSynEdit(OpenDialog1.FileName);
-      NomeFile := OpenDialog1.FileName;
-      nfile := ExtractFileName(NomeFile);
-      Application.Title := nFile;
-      caption := 'GLeDitor - '+nFile;
-      StatusBar1.Panels[2].Text := NomeFile;
-      UpdateEnvironmentByFilename(NFile);
-      salvato := TRUE;
-      FileSalva.Enabled := false;
+      //////CurrentEditedFileName := OpenDialog1.FileName;
+      //////nfile := ExtractFileName(CurrentEditedFileName);
+      //////Application.Title := nFile;
+      //////caption := 'GLeDitor - '+nFile;
+      //////StatusBar1.Panels[2].Text := CurrentEditedFileName;
+      //////UpdateEnvironmentByFilename(NFile);
+      //////salvato := TRUE;
+      //////FileSalva.Enabled := false;
     End;
   end;
 End;
@@ -519,10 +527,10 @@ Begin
  // kk:=Pos(#13,synedit1.Lines.Text);
  // ii:=Pos(#10,synedit1.Lines.Text);
  // ShowMessage('CRLF in '+inttostr(jj)+' - CR in '+inttostr(kk)+' - LF in '+inttostr(ii)+' - separator: "'+synedit1.Lines.LineBreak+'"' );
-  If (NomeFile = 'noname') Then
+  If (CurrentEditedFileName = 'noname') Then
     FileSalvaConNomeExecute(self)
   Else
-    CustomSaveTextFile(NomeFile,synedit1.Lines);//synedit1.Lines.SaveToFile(NomeFile);
+    CustomSaveTextFile(CurrentEditedFileName,synedit1.Lines);//synedit1.Lines.SaveToFile(CurrentEditedFileName);
 
   salvato := TRUE;
   FileSalva.Enabled := false;
@@ -563,9 +571,9 @@ End;
 
 Procedure TEditorMainForm.FileSalvaConNomeExecute(Sender: TObject);
 Begin
-  //SaveDialog1.FileName := NomeFile;
+  //SaveDialog1.FileName := CurrentEditedFileName;
   SaveDialog1.FileName := NFile;
-  SaveDialog1.InitialDir := ExtractFilePath(NomeFile);
+  SaveDialog1.InitialDir := ExtractFilePath(CurrentEditedFileName);
   If (linguaggio=glText) Then Begin
     If (nfile='noname') Then Begin
       SaveDialog1.FilterIndex := 14; //era qui il dannato baco dei javascript
@@ -632,12 +640,12 @@ Begin
   //savedialog1.DefaultExt:='';
 
   If SaveDialog1.Execute Then Begin
-    NomeFile := SaveDialog1.FileName;
-    CustomSaveTextFile(NomeFile,synedit1.Lines); // synedit1.Lines.SaveToFile(SaveDialog1.FileName);
-    nfile := ExtractFileName(NomeFile);
+    CurrentEditedFileName := SaveDialog1.FileName;
+    CustomSaveTextFile(CurrentEditedFileName,synedit1.Lines); // synedit1.Lines.SaveToFile(SaveDialog1.FileName);
+    nfile := ExtractFileName(CurrentEditedFileName);
     Application.Title := nFile;
     caption := 'GLeDitor3 - '+nFile;
-    StatusBar1.Panels[2].Text := NomeFile;
+    StatusBar1.Panels[2].Text := CurrentEditedFileName;
     UpdateEnvironmentByFilename(nFile);
     salvato := TRUE;
     FileSalva.Enabled := false;
@@ -699,34 +707,34 @@ Begin
         temaPassato:=trim(copy(ParamStr(I),4,Length(ParamStr(I))-3));
       End
       else If ParamStr(I) <> '' Then Begin
-       (*
-       if (caricato=false) then Begin
-            NomeFile := ParamStr(I);
-            if (Pos(PathDelim,NomeFile)=0) then begin
-               //troviamo il percorso
-               nomefile:=GetAppPath+PathDelim+NomeFile;
-            end;
-            If FileExists(NomeFile) Then Begin
-              // ho passato un nome di file valido??
-              //Synedit1.Lines.LoadFromFile(NomeFile);
-              LoadFileIntoSynEdit(NomeFile);
-              //UpdateEnvironmentByFilename(NomeFile);
-              caricato:=true;
-            End;
-         End;
-         *)
+       //////(*
+       //////if (caricato=false) then Begin
+       //////     CurrentEditedFileName := ParamStr(I);
+       //////     if (Pos(PathDelim,CurrentEditedFileName)=0) then begin
+       //////        //troviamo il percorso
+       //////        CurrentEditedFileName:=GetAppPath+PathDelim+CurrentEditedFileName;
+       //////     end;
+       //////     If FileExists(CurrentEditedFileName) Then Begin
+       //////       // ho passato un nome di file valido??
+       //////       //Synedit1.Lines.LoadFromFile(CurrentEditedFileName);
+       //////       LoadFileIntoSynEdit(CurrentEditedFileName);
+       //////       //UpdateEnvironmentByFilename(CurrentEditedFileName);
+       //////       caricato:=true;
+       //////     End;
+       //////  End;
+       //////  *)
       End;
     End;
   End;
 
   if caricato=false then Begin
-    NomeFile := 'noname';
+    CurrentEditedFileName := 'noname';
     Synedit1.Clear;
     //SettaTesto(self);
   End;
   // setto la barra di stato col nome del file
-  StatusBar1.Panels[2].Text := NomeFile;
-  nfile := ExtractFileName(NomeFile);
+  StatusBar1.Panels[2].Text := CurrentEditedFileName;
+  nfile := ExtractFileName(CurrentEditedFileName);
   Application.Title := nFile;
   caption := 'GLeDitor3 - '+nFile;
   // infine carico il file di configurazione
@@ -794,7 +802,7 @@ Begin
     End;
   End;
   
-  UpdateEnvironmentByFilename(nFile);
+  //UpdateEnvironmentByFilename(nFile);
   
   setcolors;
   salvato := true;
@@ -2238,7 +2246,7 @@ Begin
       End
       Else If ((linguaggio=glHtml)Or(linguaggio=glPhp)Or(linguaggio=glXml)) Then Begin
         // apriamo col browser il nostro file php o html o xml
-        actualCompiler   := NomeFile;
+        actualCompiler   := CurrentEditedFileName;
         actualParameters := '';
         actualDir        := '%FileDir';
       End
@@ -2274,9 +2282,9 @@ Begin
   end;
   // lancio la chiamata
   If (ActualCompiler<>'') Then Begin
-    ActualFileDirectory := extractfilepath(NomeFile);
-    ActualParameters := StringReplace(ActualParameters, '%FILENAME', NomeFile, [rfReplaceAll]);
-    ActualParameters := StringReplace(ActualParameters, '%FILEDIR', NomeFile, [rfReplaceAll]);
+    ActualFileDirectory := extractfilepath(CurrentEditedFileName);
+    ActualParameters := StringReplace(ActualParameters, '%FILENAME', CurrentEditedFileName, [rfReplaceAll]);
+    ActualParameters := StringReplace(ActualParameters, '%FILEDIR', CurrentEditedFileName, [rfReplaceAll]);
     ActualDir := StringReplace(ActualDir, '%FILENAME', ActualFileDirectory, [rfReplaceAll]);
     ActualDir := StringReplace(ActualDir, '%FILEDIR', ActualFileDirectory, [rfReplaceAll]);
      OpenDocument(PChar(ActualCompiler)); { *Converted from ShellExecute* }
@@ -3392,21 +3400,20 @@ Begin
          //temaPassato:=trim(copy(ParamStr(I),4,Length(ParamStr(I))-3));
        End
        else If ParamStr(I) <> '' Then Begin
-             NomeFile := ParamStr(I);
-             //if (Pos(PathDelim,NomeFile)=0) then begin
+             CurrentEditedFileName := ParamStr(I);
+             //if (Pos(PathDelim,CurrentEditedFileName)=0) then begin
              //   //troviamo il percorso
-             //   nomefile:=GetAppPath+PathDelim+NomeFile;
+             //   CurrentEditedFileName:=GetAppPath+PathDelim+CurrentEditedFileName;
              //end;
-             If FileExists(NomeFile) Then Begin
+             If FileExists(CurrentEditedFileName) Then Begin
                // ho passato un nome di file valido??
-               //Synedit1.Lines.LoadFromFile(NomeFile);
-               LoadFileIntoSynEdit(NomeFile);
-               //UpdateEnvironmentByFilename(NomeFile);
+               //Synedit1.Lines.LoadFromFile(CurrentEditedFileName);
+               LoadFileIntoSynEdit(CurrentEditedFileName);
+               //UpdateEnvironmentByFilename(CurrentEditedFileName);
                //caricato:=true;
-             End
-             else
-               synedit1.Lines.Add('file non trovato: '+NomeFile);
-
+               break;
+             End ;
+             //else synedit1.Lines.Add('file non trovato: '+CurrentEditedFileName);
        End;
      End;
    End;
@@ -3636,10 +3643,9 @@ End;
 Procedure TEditorMainForm.FileApriNuovaFinestraExecute(Sender: TObject);
 Begin
   If OpenDialog1.Execute Then Begin
- //synedit1.lines.add(OpenDialog1.FileName);
- //synedit1.lines.add(OpenDialog1.)
-   LoadFileInNewWindow(OpenDialog1.FileName;
- 
+   //synedit1.lines.add(OpenDialog1.FileName);
+   //synedit1.lines.add(OpenDialog1.)
+   LoadFileInNewWindow(OpenDialog1.FileName);
 
     //MyBundleName := GetMainBundlePath;//extractfilename(ParamStr(0));
     ////OtherFileName := '-S=20 -T='+getNextTheme()+' "'+OpenDialog1.FileName+'"';
@@ -3729,10 +3735,10 @@ Begin
   If theme=gtDefault Then begin
     result := 'Bosco';
   end
-  Else If theme=gtBosco Then  begin
+  Else If theme=gtBosco Then begin
     result := 'Neve'
   end
-  Else If theme=gtNeve Then  begin
+  Else If theme=gtNeve Then begin
     result := 'Oceano'
   end
   Else If theme=gtOceano Then begin
@@ -3741,12 +3747,11 @@ Begin
   Else If theme=gtRosa Then begin
     result := 'Sabbia'
   end
-  Else If theme=gtSabbia Then   begin
+  Else If theme=gtSabbia Then begin
     result := 'Custom'
   end
-  Else    begin
+  Else
     result := 'Default';
-  end;
 End;
 
 procedure TEditorMainForm.FormDropFiles(Sender: TObject;
@@ -3759,11 +3764,11 @@ begin
   if (Salvato=True)  then begin
       //carico la finestra attuale con il file
        LoadFileIntoSynEdit(OtherFileName);
-       NomeFile := OtherFileName;
-       nfile := ExtractFileName(NomeFile);
+       CurrentEditedFileName := OtherFileName;
+       nfile := ExtractFileName(CurrentEditedFileName);
        Application.Title := nFile;
        caption := 'GLeDitor - '+nFile;
-       StatusBar1.Panels[2].Text := NomeFile;
+       StatusBar1.Panels[2].Text := CurrentEditedFileName;
        UpdateEnvironmentByFilename(NFile);
        salvato := True;
        FileSalva.Enabled := False;
@@ -3894,11 +3899,11 @@ Begin
   Else result := gtDefault;
 End;
 
-Procedure TEditorMainForm.CreateParams(Var Params: TCreateParams);
-Begin
-  inherited CreateParams(Params);
-  Params.ExStyle := Params.ExStyle And Not WS_EX_TOOLWINDOW Or WS_EX_APPWINDOW;
-End;
+//Procedure TEditorMainForm.CreateParams(Var Params: TCreateParams);
+//Begin
+//  inherited CreateParams(Params);
+//  Params.ExStyle := Params.ExStyle And Not WS_EX_TOOLWINDOW Or WS_EX_APPWINDOW;
+//End;
 
 (*
 Procedure TEditorMainForm.WMSyscommand(Var Message: TWmSysCommand);
