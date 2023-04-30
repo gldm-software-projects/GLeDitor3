@@ -28,7 +28,7 @@
 		F8D68BFA96C0AC58E3E2C59E /* GLeDitor3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GLeDitor3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8D68BFB96C0AC58E3E2C59E /* ReadMe.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReadMe.txt; sourceTree = "<group>"; };
 		F8D68BFD96C0AC58E3E2C59E /* gledit.lpr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; name = gledit.lpr; path = ../../gledit.lpr; sourceTree = "<group>"; };
-		F8D68BFE96C0AC58E3E2C59E /* Main.pas */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; name = Main.pas; path = ../../src/Main.pas; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objectivepascal; };
+		F8D68BFE96C0AC58E3E2C59E /* Main.pas */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; name = Main.pas; path = ../../src/Main.pas; sourceTree = "<group>"; };
 		F8D68C0096C0AC58E3E2C59E /* MyLocalConsts_EN.pas */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; name = MyLocalConsts_EN.pas; path = ../../src/MyLocalConsts_EN.pas; sourceTree = "<group>"; };
 		F8D68C0196C0AC58E3E2C59E /* MyLocalConsts_IT.pas */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; name = MyLocalConsts_IT.pas; path = ../../src/MyLocalConsts_IT.pas; sourceTree = "<group>"; };
 		F8D68C0296C0AC58E3E2C59E /* MyLocalConsts.pas */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; name = MyLocalConsts.pas; path = ../../src/MyLocalConsts.pas; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objectivepascal; };
@@ -279,16 +279,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = GLeDitor3/GLeDitor3.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				DEVELOPMENT_TEAM = VJ5FW82H36;
 				INFOPLIST_FILE = "$(LAZ_PROJECT_DIR)/$(LAZ_TARGET_EXEC).app/Contents/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = GLeDitor3;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				LAZBUILD_OPTIONS = "--build-mode=Debug";
 				LAZBUILD_PATH = /usr/local/bin/lazbuild;
 				LAZ_PROJECT_DIR = /Users/gldm/dev/pascal/GLeDitor3;
 				LAZ_PROJECT_LPI = gledit.lpi;
 				LAZ_TARGET_EXEC = GLeDitor3;
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				MARKETING_VERSION = 3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = it.gldm.GLeDitor3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -299,16 +303,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = GLeDitor3/GLeDitor3Release.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				DEVELOPMENT_TEAM = VJ5FW82H36;
 				INFOPLIST_FILE = "$(LAZ_PROJECT_DIR)/$(LAZ_TARGET_EXEC).app/Contents/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = GLeDitor3;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				LAZBUILD_OPTIONS = "--build-mode=Release ";
 				LAZBUILD_PATH = /usr/local/bin/lazbuild;
 				LAZ_PROJECT_DIR = /Users/gldm/dev/pascal/GLeDitor3;
 				LAZ_PROJECT_LPI = gledit.lpi;
 				LAZ_TARGET_EXEC = GLeDitor3;
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				MARKETING_VERSION = 3.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = it.gldm.GLeDitor3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
