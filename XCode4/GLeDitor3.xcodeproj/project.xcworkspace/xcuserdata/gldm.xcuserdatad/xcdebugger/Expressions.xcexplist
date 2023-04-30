@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "FILEAPRINUOVAFINESTRAEXECUTE:Main.pas">
+         <PersistentStrings>
+            <PersistentString
+               value = "OpenDialog1.FileName">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "LOADFILEINNEWWINDOW:Main.pas">
+         <PersistentStrings>
+            <PersistentString
+               value = "myfilename">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "FORMCREATE:Main.pas">
+         <PersistentStrings>
+            <PersistentString
+               value = "exepath">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

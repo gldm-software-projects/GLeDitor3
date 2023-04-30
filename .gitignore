@@ -4,9 +4,10 @@
 # Ignora la cartella backup
 backup
 
-# Ignora la cartella con i file compilati/i file object
+# Ignora i file compilati ed i file object
 Build
 GLeDitor3
+GLeDitor3.dSYM
 
 # Ignora i file di backup di gleditor
 *~
