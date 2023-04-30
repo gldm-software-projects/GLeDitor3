@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -27,12 +27,12 @@
 		F8D68BF896C0AC58E3E2C59E /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		F8D68BFA96C0AC58E3E2C59E /* GLeDitor3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GLeDitor3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8D68BFB96C0AC58E3E2C59E /* ReadMe.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReadMe.txt; sourceTree = "<group>"; };
-		F8D68BFD96C0AC58E3E2C59E /* gledit.lpr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; name = gledit.lpr; path = ../../gledit.lpr; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objectivepascal; };
+		F8D68BFD96C0AC58E3E2C59E /* gledit.lpr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; name = gledit.lpr; path = ../../gledit.lpr; sourceTree = "<group>"; };
 		F8D68BFE96C0AC58E3E2C59E /* Main.pas */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; name = Main.pas; path = ../../src/Main.pas; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objectivepascal; };
-		F8D68C0096C0AC58E3E2C59E /* MyLocalConsts_EN.pas */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; name = MyLocalConsts_EN.pas; path = ../../src/MyLocalConsts_EN.pas; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objectivepascal; };
-		F8D68C0196C0AC58E3E2C59E /* MyLocalConsts_IT.pas */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; name = MyLocalConsts_IT.pas; path = ../../src/MyLocalConsts_IT.pas; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objectivepascal; };
+		F8D68C0096C0AC58E3E2C59E /* MyLocalConsts_EN.pas */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; name = MyLocalConsts_EN.pas; path = ../../src/MyLocalConsts_EN.pas; sourceTree = "<group>"; };
+		F8D68C0196C0AC58E3E2C59E /* MyLocalConsts_IT.pas */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; name = MyLocalConsts_IT.pas; path = ../../src/MyLocalConsts_IT.pas; sourceTree = "<group>"; };
 		F8D68C0296C0AC58E3E2C59E /* MyLocalConsts.pas */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; name = MyLocalConsts.pas; path = ../../src/MyLocalConsts.pas; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objectivepascal; };
-		F8D68C0396C0AC58E3E2C59E /* Preferences.pas */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; name = Preferences.pas; path = ../../src/Preferences.pas; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objectivepascal; };
+		F8D68C0396C0AC58E3E2C59E /* Preferences.pas */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; name = Preferences.pas; path = ../../src/Preferences.pas; sourceTree = "<group>"; };
 		F8D68C0496C0AC58E3E2C59E /* SyntaxEnum.pas */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; name = SyntaxEnum.pas; path = ../../src/SyntaxEnum.pas; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objectivepascal; };
 		F8D68C0596C0AC58E3E2C59E /* ThemeEnum.pas */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; name = ThemeEnum.pas; path = ../../src/ThemeEnum.pas; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objectivepascal; };
 		F8D68C0696C0AC58E3E2C59E /* Utility.pas */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; name = Utility.pas; path = ../../src/Utility.pas; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objectivepascal; };
@@ -138,7 +138,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0820;
-				ORGANIZATIONNAME = noorg;
+				ORGANIZATIONNAME = gldm.it;
 				TargetAttributes = {
 					F8D68C0E96C0AC58E3E2C59E = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -147,10 +147,11 @@
 				};
 			};
 			buildConfigurationList = F8D68C1396C0AC58E3E2C59E /* Build configuration list for PBXProject "GLeDitor3" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = F8D68C0996C0AC58E3E2C59E;
@@ -229,7 +230,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -268,7 +269,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 			};
@@ -277,36 +278,41 @@
 		F8D68C1696C0AC58E3E2C59E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_ENTITLEMENTS = GLeDitor3/GLeDitor3.entitlements;
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				DEVELOPMENT_TEAM = VJ5FW82H36;
 				INFOPLIST_FILE = "$(LAZ_PROJECT_DIR)/$(LAZ_TARGET_EXEC).app/Contents/Info.plist";
 				LAZBUILD_OPTIONS = "--build-mode=Debug";
 				LAZBUILD_PATH = /usr/local/bin/lazbuild;
 				LAZ_PROJECT_DIR = /Users/gldm/dev/pascal/GLeDitor3;
 				LAZ_PROJECT_LPI = gledit.lpi;
 				LAZ_TARGET_EXEC = GLeDitor3;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = it.gldm.GLeDitor3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx10.7;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
 		F8D68C1796C0AC58E3E2C59E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				CODE_SIGN_ENTITLEMENTS = GLeDitor3/GLeDitor3.entitlements;
-				DEVELOPMENT_TEAM = "";
+				ARCHS = "$(ARCHS_STANDARD)";
+				CODE_SIGN_ENTITLEMENTS = GLeDitor3/GLeDitor3Release.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				DEVELOPMENT_TEAM = VJ5FW82H36;
 				INFOPLIST_FILE = "$(LAZ_PROJECT_DIR)/$(LAZ_TARGET_EXEC).app/Contents/Info.plist";
 				LAZBUILD_OPTIONS = "--build-mode=Release ";
 				LAZBUILD_PATH = /usr/local/bin/lazbuild;
 				LAZ_PROJECT_DIR = /Users/gldm/dev/pascal/GLeDitor3;
 				LAZ_PROJECT_LPI = gledit.lpi;
 				LAZ_TARGET_EXEC = GLeDitor3;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = it.gldm.GLeDitor3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx10.7;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
