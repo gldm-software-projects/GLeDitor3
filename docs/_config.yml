@@ -1,6 +1,7 @@
 title: GLeDitor3 User manual
 description: The on-line guide to the GLeDitor3 application - a small and simple programmers editor for macOs
 theme: jekyll-theme-minimal
+show_downloads: false
 remote_theme: pages-themes/minimal@v0.2.0
 plugins:
 - jekyll-remote-theme # add this line to the plugins list if you already have one
