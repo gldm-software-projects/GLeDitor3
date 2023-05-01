@@ -175,7 +175,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -e\nCMD_LINE=\"'$LAZBUILD_PATH' $LAZBUILD_OPTIONS '$LAZ_PROJECT_DIR/$LAZ_PROJECT_LPI'\"\necho \"set -e\" >lazcmd.tmp.sh\necho $CMD_LINE\necho $CMD_LINE >>lazcmd.tmp.sh\necho cp -p \"'$LAZ_PROJECT_DIR/$LAZ_TARGET_EXEC'\" \"'$BUILT_PRODUCTS_DIR/$EXECUTABLE_PATH'\" >>lazcmd.tmp.sh\nif [ -e \"$LAZ_PROJECT_DIR/$LAZ_TARGET_EXEC.app/Contents/Resources\" ]; then\n  echo cp -p -R \"'$LAZ_PROJECT_DIR/$LAZ_TARGET_EXEC.app/Contents/Resources/'\" \"'$BUILT_PRODUCTS_DIR/$CONTENTS_FOLDER_PATH/Resources'\" >>lazcmd.tmp.sh\nfi\n/bin/sh lazcmd.tmp.sh\nrm lazcmd.tmp.sh\n";
+			shellScript = "rm -rf ../Build/*\nset -e\nCMD_LINE=\"'$LAZBUILD_PATH' $LAZBUILD_OPTIONS '$LAZ_PROJECT_DIR/$LAZ_PROJECT_LPI'\"\necho \"set -e\" >lazcmd.tmp.sh\necho $CMD_LINE\necho $CMD_LINE >>lazcmd.tmp.sh\necho cp -p \"'$LAZ_PROJECT_DIR/$LAZ_TARGET_EXEC'\" \"'$BUILT_PRODUCTS_DIR/$EXECUTABLE_PATH'\" >>lazcmd.tmp.sh\nif [ -e \"$LAZ_PROJECT_DIR/$LAZ_TARGET_EXEC.app/Contents/Resources\" ]; then\n  echo cp -p -R \"'$LAZ_PROJECT_DIR/$LAZ_TARGET_EXEC.app/Contents/Resources/'\" \"'$BUILT_PRODUCTS_DIR/$CONTENTS_FOLDER_PATH/Resources'\" >>lazcmd.tmp.sh\nfi\n/bin/sh lazcmd.tmp.sh\nrm lazcmd.tmp.sh\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
