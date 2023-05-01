@@ -2759,7 +2759,9 @@ Procedure TEditorMainForm.SetColors();
 Begin
   synedit1.Color := TColor(strtoint(lightcol));
   //synedit1.Gutter.Color := tcolor(strtoint(darkcol));
-  synedit1.Gutter.Color := clWhite;//tcolor(strtoint(lightcol));
+  //synedit1.Gutter.Color := clWhite;//tcolor(strtoint(lightcol));
+  synedit1.Gutter.Color := TColor(strtoint(lightcol));//clWindow;
+  (synedit1.Gutter.Parts[0]).MarkupInfo.Background:=TColor(strtoint(lightcol));
   toolbar1.Color := TColor(strtoint(lightcol));
   //toolbutton17.Color:=toolbar1.Color ;
   //ToolButton17.Color:=clGreen;
