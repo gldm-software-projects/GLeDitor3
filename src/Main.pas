@@ -2520,7 +2520,7 @@ Begin
   End;
   StatusBar1.Panels[0].Text := lingua.S_Row+' '+IntTOStr(synedit1.CaretY);
   StatusBar1.Panels[1].Text := lingua.S_Col+' '+IntTOStr(synedit1.CaretX);
-  synedit1.Refresh;  // hack for addressing a problem due to a bug on synedit
+  //synedit1.Refresh;  // hack for addressing a problem due to a bug on synedit
 End;
 
 procedure TEditorMainForm.synedit1KeyUp(Sender: TObject; var Key: Word;
@@ -2537,7 +2537,7 @@ end;
 
 Procedure TEditorMainForm.synedit1MouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 Begin
-  // aggiorno la riga
+// aggiorno la riga
  // StatusBar1.Panels[0].Text := lingua.S_Row+' '+IntTOStr(synedit1.CaretY+1);
 End;
 

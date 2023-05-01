@@ -220,12 +220,12 @@ object EditorMainForm: TEditorMainForm
       Font.Quality = fqNonAntialiased
       ParentColor = False
       ParentFont = False
+      ParentShowHint = False
       TabOrder = 0
       OnClick = synedit1Click
       OnKeyUp = synedit1KeyUp
-      OnMouseDown = synedit1MouseDown
-      Gutter.Color = 15263976
-      Gutter.Width = 57
+      Gutter.Color = clSilver
+      Gutter.Width = 33
       Gutter.MouseActions = <>
       RightGutter.Width = 0
       RightGutter.MouseActions = <>
@@ -672,13 +672,9 @@ object EditorMainForm: TEditorMainForm
       MouseLinkColor.Foreground = clBlue
       LineHighlightColor.Background = clNone
       LineHighlightColor.Foreground = clNone
-      TabWidth = 4
+      TabWidth = 2
       OnChange = synedit1Change
       inline SynLeftGutterPartList1: TSynGutterPartList
-        object SynGutterMarks1: TSynGutterMarks
-          Width = 24
-          MouseActions = <>
-        end
         object SynGutterLineNumber1: TSynGutterLineNumber
           Width = 17
           MouseActions = <>
@@ -851,7 +847,6 @@ object EditorMainForm: TEditorMainForm
       Hint = 'Crea un nuovo file'
       ImageIndex = 5
       OnExecute = FileNuovoExecute
-      ShortCut = 16462
     end
     object FileApri: TAction
       Category = 'File'
@@ -866,7 +861,7 @@ object EditorMainForm: TEditorMainForm
       Hint = 'Salva il file corrente'
       ImageIndex = 25
       OnExecute = FileSalvaExecute
-      ShortCut = 16467
+      ShortCut = 4179
     end
     object FileSalvaConNome: TAction
       Category = 'File'
@@ -887,7 +882,7 @@ object EditorMainForm: TEditorMainForm
       Hint = 'Esci da GLeDitor'
       ImageIndex = 8
       OnExecute = FileEsciExecute
-      ShortCut = 16465
+      ShortCut = 4177
     end
     object HelpInfo: TAction
       Category = '?'
@@ -902,7 +897,7 @@ object EditorMainForm: TEditorMainForm
       Enabled = False
       Hint = 'Taglia la selezione'
       ImageIndex = 3
-      ShortCut = 16472
+      ShortCut = 4184
     end
     object EditCopia: TEditCopy
       Category = 'Edit'
@@ -910,14 +905,14 @@ object EditorMainForm: TEditorMainForm
       Enabled = False
       Hint = 'Copia la selezione'
       ImageIndex = 2
-      ShortCut = 16451
+      ShortCut = 4163
     end
     object EditIncolla: TEditPaste
       Category = 'Edit'
       Caption = '&Incolla'
       Hint = 'Incolla la selezione'
       ImageIndex = 22
-      ShortCut = 16470
+      ShortCut = 4182
     end
     object HelpManuale: TAction
       Category = '?'
@@ -954,13 +949,14 @@ object EditorMainForm: TEditorMainForm
       Caption = 'EditRedo'
       ImageIndex = 24
       OnExecute = EditRedoExecute
+      ShortCut = 4185
     end
     object EditUndo: TAction
       Category = 'Edit'
       Caption = 'EditUndo'
       ImageIndex = 26
       OnExecute = EditUndoExecute
-      ShortCut = 16474
+      ShortCut = 4186
     end
     object EditACapo: TAction
       Category = 'Edit'
@@ -973,13 +969,14 @@ object EditorMainForm: TEditorMainForm
       Caption = 'Cerca'
       ImageIndex = 19
       OnExecute = EditCercaExecute
-      ShortCut = 16454
+      ShortCut = 4166
     end
     object EditSelezionaTutto: TAction
       Category = 'Edit'
       Caption = 'Seleziona tutto'
       ImageIndex = 17
       OnExecute = EditSelezionaTuttoExecute
+      ShortCut = 4161
     end
     object HelpCompilatore: TAction
       Category = '?'
@@ -1000,6 +997,7 @@ object EditorMainForm: TEditorMainForm
       Caption = 'FileNuovaFinestra'
       ImageIndex = 11
       OnExecute = FileNuovaFinestraExecute
+      ShortCut = 4174
     end
     object HelpHomePage: TAction
       Category = '?'
@@ -1013,7 +1011,7 @@ object EditorMainForm: TEditorMainForm
       Caption = 'EditExtendedSearch'
       ImageIndex = 6
       OnExecute = EditExtendedSearchExecute
-      ShortCut = 16453
+      ShortCut = 4165
     end
     object FileStampaDialog: TAction
       Category = 'File'

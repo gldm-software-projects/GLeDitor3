@@ -18,3 +18,4 @@ GLeDitor3.dSYM
 # Altri specifici file da ignorare...
 gledit-gdb.lps
 gledit-lldb.lps
+GraphicResources/wip.xcf
