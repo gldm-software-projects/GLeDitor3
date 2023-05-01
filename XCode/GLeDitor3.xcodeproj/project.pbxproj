@@ -23,6 +23,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6D115F752A001757003AD0B2 /* GLeDitor3Release.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GLeDitor3Release.entitlements; sourceTree = "<group>"; };
+		6D115F762A0017D1003AD0B2 /* GLeDitor3Debug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GLeDitor3Debug.entitlements; sourceTree = "<group>"; };
+		6D115F772A001863003AD0B2 /* GLeDitor3.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = GLeDitor3.entitlements; sourceTree = "<group>"; };
 		6DD458C029F1BB9200AE8060 /* logo.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = logo.icns; sourceTree = "<group>"; };
 		F8D68BF896C0AC58E3E2C59E /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		F8D68BFA96C0AC58E3E2C59E /* GLeDitor3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GLeDitor3.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,6 +80,9 @@
 		F8D68C0A96C0AC58E3E2C59E /* GLeDitor3 */ = {
 			isa = PBXGroup;
 			children = (
+				6D115F772A001863003AD0B2 /* GLeDitor3.entitlements */,
+				6D115F762A0017D1003AD0B2 /* GLeDitor3Debug.entitlements */,
+				6D115F752A001757003AD0B2 /* GLeDitor3Release.entitlements */,
 				F8D68BFB96C0AC58E3E2C59E /* ReadMe.txt */,
 				F8D68C0C96C0AC58E3E2C59E /* C Dummy File */,
 				F8D68C0796C0AC58E3E2C59E /* Info.plist */,
