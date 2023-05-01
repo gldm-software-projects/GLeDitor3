@@ -103,7 +103,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="18"/>
-        <UsageCount Value="27"/>
+        <UsageCount Value="30"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit0>
       <Unit1>
@@ -116,7 +116,7 @@
         <EditorIndex Value="1"/>
         <TopLine Value="3883"/>
         <CursorPos X="28" Y="3912"/>
-        <UsageCount Value="27"/>
+        <UsageCount Value="30"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -124,7 +124,7 @@
       <Unit2>
         <Filename Value="src/MyLocalConsts_EN.pas"/>
         <IsPartOfProject Value="True"/>
-        <UsageCount Value="27"/>
+        <UsageCount Value="30"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit2>
@@ -134,13 +134,13 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="31"/>
         <CursorPos X="17" Y="34"/>
-        <UsageCount Value="27"/>
+        <UsageCount Value="30"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit3>
       <Unit4>
         <Filename Value="src/MyLocalConsts.pas"/>
         <IsPartOfProject Value="True"/>
-        <UsageCount Value="27"/>
+        <UsageCount Value="30"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit4>
       <Unit5>
@@ -150,19 +150,19 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="27"/>
+        <UsageCount Value="30"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit5>
       <Unit6>
         <Filename Value="src/SyntaxEnum.pas"/>
         <IsPartOfProject Value="True"/>
-        <UsageCount Value="27"/>
+        <UsageCount Value="30"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit6>
       <Unit7>
         <Filename Value="src/ThemeEnum.pas"/>
         <IsPartOfProject Value="True"/>
-        <UsageCount Value="27"/>
+        <UsageCount Value="30"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit7>
       <Unit8>
@@ -171,7 +171,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="33"/>
         <CursorPos X="28" Y="35"/>
-        <UsageCount Value="27"/>
+        <UsageCount Value="30"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit8>
       <Unit9>
@@ -235,7 +235,7 @@
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit15>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="29" HistoryIndex="28">
       <Position1>
         <Filename Value="src/Main.pas"/>
         <Caret Line="2213" Column="5" TopLine="2207"/>
@@ -352,10 +352,6 @@
         <Filename Value="src/Main.pas"/>
         <Caret Line="3437" Column="55" TopLine="3433"/>
       </Position29>
-      <Position30>
-        <Filename Value="src/Main.pas"/>
-        <Caret Line="312" Column="36" TopLine="354"/>
-      </Position30>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
