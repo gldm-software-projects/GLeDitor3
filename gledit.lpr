@@ -33,7 +33,6 @@ uses
 
 begin       
   RequireDerivedFormResource:=True;
-  Application.Scaled:=True;
   Application.Initialize;
   Application.Title:='GLeDitor3';
   Application.CreateForm(TEditorMainForm, EditorMainForm);
