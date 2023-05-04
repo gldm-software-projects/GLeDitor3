@@ -38,6 +38,9 @@
 								<a href="#search">Advancend search</a>
 							</li>
 							<li>
+								<a href="#call">Call external application (compiler), syntax based</a>
+							</li>
+							<li>
 								<a href="#comment">Comment/Uncomment selected text</a>
 							</li>
 							<li>
@@ -50,8 +53,17 @@
 							<hr />
 							<article id="highlight">
 								<h2>Syntax highlight and code folding</h2>
-								<p>
-								</p>
+								<p>The editor allows to collapse the text of given structures or code blocks, depending on the current selected syntax:<br/>
+								In the lateral gutter, the collapsable block are identified by those symbols:<ul>
+                                <li>[-] : the beginning of an unfolded block, clicking on it will fold the block</li>
+                                <li>[+] : the beginning of a folded block, clicking on it will unfold the block</li>
+                                <li> |  : (a vertical line) denotes the lines of an unfolded block</li></ul></p>
+                                <p><b>What are the code blocks that can be folded?</b><br/>
+                                Depending on syntax, some examples are:<ul>
+                                <li>Pascal : begin..end,  if...then...else..., try...except...finally..., procedure, functions</li>
+                                <li>Java : code between { and } </li>
+                                <li>Html : text between an open tag (as &lt;div&gt;) and a closing tag (as &lt;/div&gt;)</li>
+                                <li>Python : code with the same indendation can be collapsed</li></ul></p>
 							</article>
 							<hr />
 							<article id="search">
@@ -63,6 +75,14 @@
                     a line of the result set will make the main editor to move the caret to the corresponding line.</p>
 							</article>
 							<hr />
+							<article id="call">
+								<h2>Call compiler</h2>
+								<p>In preferences dialog form you can set a custom call for the following syntaxes:<ul>	<li>Pascal</li>
+                                <li>Java</li><li>C/C++</li><li>SQL</li><li>Basic</li><li>Python</li></ul>
+                                In addition, you can also set a link to a manual of the language or an help file about that syntax.
+								</p>
+							</article>
+                            <hr />
 							<article id="comment">
 								<h2>Comment/uncomment functions</h2>
 								<p>
