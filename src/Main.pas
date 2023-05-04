@@ -7,7 +7,9 @@ Main unit of the GLeDitor 3 project
 Unit Main;
 
 {$MODE objfpc}{$H+}
+{$IFDEF DARWIN}
 {$modeswitch objectivec1}
+{$ENDIF}
 
 // GLeDitor v.3 for Apple Mac architecture
 
@@ -344,7 +346,11 @@ Var
 
 Implementation
 
-Uses strutils, Utility, sysutils, CocoaAll;
+Uses strutils, Utility, sysutils
+{$IFDEF DARWIN}
+,CocoaAll
+{$ENDIF}
+;
 
 {$R *.lfm}
 
@@ -654,7 +660,9 @@ End;
 Procedure TEditorMainForm.HelpInfoExecute(Sender: TObject);
 //Var Aboutbox: taboutbox;
 Begin
+{$IFDEF DARWIN}
   NSApp.orderFrontStandardAboutPanel(nil);
+{$ENDIF}
   //Aboutbox := taboutbox.create(self);
   //Aboutbox.color := tcolor(strtoint(darkcol));
   //Aboutbox.Panel1.Color := tcolor(strtoint(lightcol));

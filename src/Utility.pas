@@ -1,7 +1,9 @@
 Unit Utility;
 
 {$MODE objfpc}{$H+}
+{$IFDEF DARWIN}
 {$modeswitch objectivec1}
+{$ENDIF}
 
 Interface
 
@@ -13,7 +15,11 @@ function GetAppPath: string;
 
 Implementation
 
-Uses SysUtils, LCLIntf, LCLType, LMessages, CocoaAll, CocoaUtils;
+Uses SysUtils, LCLIntf, LCLType, LMessages
+{$IFDEF DARWIN}
+  ,CocoaAll,CocoaUtils
+{$ENDIF}
+;
 
 Function EndsWith(filename:String; desinenza:String): Boolean;
 var i :smallint;
@@ -28,7 +34,9 @@ End;
 
 function GetMainBundlePath: string;
 begin
-  Result := NSStringToString(NSBundle.mainBundle.bundlePath);
+{$IFDEF DARWIN}
+  Result := NSStringToString(NSBundle.mainBundle.bundlePath);  
+{$ENDIF}
 end;
 
 function GetAppPath: string;
