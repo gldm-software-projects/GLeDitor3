@@ -8,5 +8,5 @@ This project is a fork of [GLeDitor for Windows](https://gleditor.sf.net), porte
 
 ## Documentation
 
-[On-line manual] (https://gldm-software-projects.github.io/GLeDitor3/)
-[Wiki] (https://github.com/gldm-software-projects/GLeDitor3/wiki)
+* [On-line manual](https://gldm-software-projects.github.io/GLeDitor3/)
+* [Wiki](https://github.com/gldm-software-projects/GLeDitor3/wiki)
