@@ -15,7 +15,6 @@
         <TextName Value="gldm.GLeDitor3"/>
         <TextDesc Value="Editor for MacOs"/>
       </XPManifest>
-      <Icon Value="0"/>
     </General>
     <VersionInfo>
       <UseVersionInfo Value="True"/>
@@ -65,10 +64,10 @@
                 <GraphicApplication Value="True"/>
               </Win32>
             </Options>
-          </Linking>  
-    <Other>
-      <CompilerPath Value="\usr\local\bin\ppcx64"/>
-    </Other>
+          </Linking>
+          <Other>
+            <CompilerPath Value="/usr/local/bin/ppcx64"/>
+          </Other>
         </CompilerOptions>
       </Item2>
       <Item3 Name="Release">
@@ -99,10 +98,10 @@
                 <GraphicApplication Value="True"/>
               </Win32>
             </Options>
-          </Linking>  
-    <Other>
-      <CompilerPath Value="\usr\local\bin\ppcx64"/>
-    </Other>
+          </Linking>
+          <Other>
+            <CompilerPath Value="/usr/local/bin/ppcx64"/>
+          </Other>
         </CompilerOptions>
       </Item3>
       <SharedMatrixOptions Count="1">
@@ -194,9 +193,9 @@
           <GraphicApplication Value="True"/>
         </Win32>
       </Options>
-    </Linking>    
+    </Linking>
     <Other>
-      <CompilerPath Value="\usr\local\bin\ppcx64"/>
+      <CompilerPath Value="/usr/local/bin/ppcx64"/>
     </Other>
   </CompilerOptions>
 </CONFIG>
