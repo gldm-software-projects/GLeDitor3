@@ -1013,12 +1013,6 @@ object EditorMainForm: TEditorMainForm
       OnExecute = EditExtendedSearchExecute
       ShortCut = 4165
     end
-    object FileStampaDialog: TAction
-      Category = 'File'
-      Caption = 'FileStampaDialog'
-      ImageIndex = 23
-      OnExecute = FileStampaDialogExecute
-    end
     object AddSnippet: TAction
       Category = 'Strumenti'
       Caption = 'Aggiungi snippet'
@@ -1109,7 +1103,7 @@ object EditorMainForm: TEditorMainForm
         Caption = '-'
       end
       object Stampa1: TMenuItem
-        Action = FileStampaDialog
+        Action = FileStampa
       end
       object N8: TMenuItem
         Caption = '-'

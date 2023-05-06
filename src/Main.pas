@@ -16,14 +16,14 @@ Unit Main;
 Interface
 
 Uses 
-Preferences, LCLIntf, LCLType, LMessages, Messages, Classes, Graphics, Controls, Forms, Dialogs,
-ComCtrls, StdCtrls, ActnList, ImgList, StdActns, Menus, ToolWin, Printers,
+Preferences, LCLIntf, LCLType, Classes, Graphics, Controls, Forms, Dialogs,
+ComCtrls, StdCtrls, ActnList, ImgList, StdActns, Menus, Printers,
 SynEdit, SynEditMiscClasses, SynHighlighterPas, SynEditHighlighter, SynHighlighterCSS,
 SynHighlighterXML, SynHighlighterCpp,  SynHighlighterJava, SynHighlighterSQL,
-SynHighlighterPython,  SynHighlighterJScript, SynHighlighterPHP, SynHighlighterHTML,
+SynHighlighterPython, SynHighlighterJScript, SynHighlighterPHP, SynHighlighterHTML,
 SynHighlighterVB, SynCompletion, SynEditTypes, IniFiles,
 MyLocalConsts, MyLocalConsts_IT, MyLocalConsts_EN,
-ExtCtrls, Buttons, process,  ThemeEnum, SyntaxEnum, PrintersDlgs, Types;
+ExtCtrls, Buttons, process, ThemeEnum, SyntaxEnum, PrintersDlgs, Types;
 
 Type 
   (**
@@ -145,7 +145,6 @@ Type
     EditExtendedSearch: TAction;
     N1: TMenuItem;
     EditExtendedSearch1: TMenuItem;
-    FileStampaDialog: TAction;
     Custom1: TMenuItem;
     SynPythonSyn1: TSynPythonSyn;
     StatusBar1: TStatusBar;
@@ -278,7 +277,7 @@ Type
     Procedure ExtendedSearchEditKeyPress(Sender: TObject; Var Key: Char);
     Procedure SearchResultListDblClick(Sender: TObject);
     Procedure SearchResultListClick(Sender: TObject);
-    Procedure FileStampaDialogExecute(Sender: TObject);
+    //Procedure FileStampaDialogExecute(Sender: TObject);
     Procedure Custom1Click(Sender: TObject);
     Procedure BitBtn1Click(Sender: TObject);
     Procedure SearchPanelCanResize(Sender: TObject;
@@ -891,44 +890,59 @@ Begin
   synedit1.Refresh;
 End;
 
-// procedura di stampa.... ... ... ... ...
-Procedure TEditorMainForm.FileStampaDialogExecute(Sender: TObject);
-Begin
-  //
-  If (printdialog1.execute) Then Begin
-    //syneditprint1.Copies := printdialog1.Copies;
-    //syneditprint1.SynEdit := synedit1;
-    //syneditprint1.Colors := true;
-    //syneditprint1.Highlighter := synedit1.Highlighter;
-    //SynEditPrint1.Title := nfile;
-    //SynEditPrint1.Header.Clear;
-    //SynEditPrint1.Header.Add(nfile, Nil, taLeftJustify, 1);
-    //SynEditPrint1.Header.Add(datetostr(now), nil, taRightJustify, 1);
-    //SynEditPrint1.Footer.Clear;
-    //SynEditPrint1.Footer.Add(lingua.S_page+' $PAGENUM$ '+lingua.S_of+' $PAGECOUNT$',
-    //                     Nil, taCenter, 1);
-    //
-    //If (printdialog1.PrintRange = prAllPages ) Then
-    //  Syneditprint1.Print
-    //Else
-    //  syneditprint1.PrintRange(printdialog1.FromPage,printdialog1.topage);
-  End;
-End;
-
 Procedure TEditorMainForm.FileStampaExecute(Sender: TObject);
+var
+  YPos, LineHeight, VerticalMargin: Integer;
+  BottomMargin,LeftMargin:Integer;
+  aLine: string;
+  pageNum: integer;
+
+  procedure MyPrintPageNumber();
+  begin
+    //set-up parametri per la scrittura del numero di pagia
+    YPos:=BottomMargin+10;
+    Printer.Canvas.Font.Size := 8;
+    Printer.Canvas.Font.Italic := True;
+    Printer.Canvas.TextOut(round(Printer.PageWidth/2-LineHeight), YPos, lingua.S_Page+' '+inttostr(pageNum));
+    pageNum:=pageNum+1;
+    //reset parametri
+    Printer.Canvas.Font.Size := 10;
+    Printer.Canvas.Font.Italic := False;
+  end;
+
 Begin
-  //syneditprint1.Copies := 1;
-  //syneditprint1.SynEdit := synedit1;
-  //syneditprint1.Colors := true;
-  //syneditprint1.Highlighter := synedit1.Highlighter;
-  //SynEditPrint1.Title := nfile;
-  //SynEditPrint1.Header.Clear;
-  //SynEditPrint1.Header.Add(nfile, Nil, taLeftJustify, 1);
-  //SynEditPrint1.Header.Add(datetostr(now), nil, taRightJustify, 1);
-  //SynEditPrint1.Footer.Clear;
-  //SynEditPrint1.Footer.Add(lingua.S_page+' $PAGENUM$ '+lingua.S_of+' $PAGECOUNT$',
-  //                         Nil, taCenter, 1);
-  //Syneditprint1.Print;
+  if trim(synedit1.Text)>'' then begin
+    if PrintDialog1.execute then begin
+      try
+        Printer.BeginDoc;
+        Printer.Canvas.Font.Name := 'Courier New';
+        Printer.Canvas.Font.Size := 10;
+        Printer.Canvas.Font.Color := clBlack;
+        //set-up
+        LineHeight := Round(1.2 * Abs(Printer.Canvas.TextHeight('I')));
+        VerticalMargin := 4 * LineHeight;
+        BottomMargin   := Printer.PageHeight - VerticalMargin;
+        LeftMargin:= VerticalMargin;
+        pageNum:=1;
+        // iniziamo a stampare le righe
+        YPos := VerticalMargin;
+        for aLine in synedit1.lines do begin
+          Printer.Canvas.TextOut(LeftMargin, YPos, aLine);
+          YPos := YPos+LineHeight;
+          if YPos>=BottomMargin then begin
+            //set-up scrittura numero di pagina
+            MyPrintPageNumber();
+            Printer.NewPage;
+            YPos := VerticalMargin;
+          end;
+        end;
+        // numero sull'ultima pagina
+        MyPrintPageNumber();
+      finally
+        Printer.EndDoc;
+      end;
+    end;
+  end;
 End;
 
 Procedure TEditorMainForm.CambiaStatoFlag(Sender: TObject);
@@ -3497,8 +3511,8 @@ Begin
   FileSalvaConNome.Hint := locale.S_File_SaveAs_Hint;
   FileStampa.Caption := locale.S_File_Print;
   FileStampa.Hint := locale.S_File_Print_Hint;
-  FileStampaDialog.Caption := locale.S_File_Print;
-  FileStampaDialog.Hint := locale.S_File_Print_Hint;
+  //FileStampaDialog.Caption := locale.S_File_Print;
+  //FileStampaDialog.Hint := locale.S_File_Print_Hint;
   FileEsci.Caption := locale.S_File_Close;
   FileEsci.Hint := locale.S_File_Close_Hint;
 
