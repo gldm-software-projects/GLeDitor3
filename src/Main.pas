@@ -327,6 +327,7 @@ Type
       Function AnsiFileCheck(const FileName: string): boolean;
       Procedure CustomSaveTextFile(const filename:string; const source :TStrings);
       function CanSafelyCleanupCurrentDocument:Boolean;
+      procedure SetUpDefaultPrinter;
     Public
     { Public declarations }
       darkcol, lightcol: string;
@@ -911,6 +912,7 @@ var
   end;
 
 Begin
+  SetUpDefaultPrinter;
   if trim(synedit1.Text)>'' then begin
     if PrintDialog1.execute then begin
       try
@@ -4116,5 +4118,15 @@ begin
     Result:= True;
 end;
 
+// set-up di una stampante quando non ci sono stampanti
+procedure TEditorMainForm.SetUpDefaultPrinter;
+begin
+  if Printer.Printers.Count>0 then begin
+     //Printer.PaperSize.PaperName:='A4';
+  end
+  else begin                           
+     Printer.PaperSize.PaperName:='A4';
+  end;
+end;
 
 End.
