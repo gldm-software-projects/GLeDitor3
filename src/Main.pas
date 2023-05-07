@@ -346,7 +346,13 @@ Var
 
 Implementation
 
-Uses strutils, Utility, sysutils
+Uses
+{$IFDEF DEBUG}
+  LazLoggerBase,
+{$ELSE}
+  LazLoggerDummy,
+{$ENDIF}
+strutils, Utility, sysutils
 {$IFDEF DARWIN}
 ,CocoaAll
 {$ENDIF}
@@ -674,6 +680,7 @@ var I,S:Integer;
     temaPassato:string;
     caricato:Boolean;
 Begin
+  DebugLn('partiamo');
   syntaxLabel.Caption:='';
   BlackFont:=true;
   caricato:=false;
@@ -4122,9 +4129,12 @@ end;
 procedure TEditorMainForm.SetUpDefaultPrinter;
 begin
   if Printer.Printers.Count>0 then begin
-     //Printer.PaperSize.PaperName:='A4';
+     DebugLn('printer index: '+ inttostr(Printer.PrinterIndex));
+     DebugLn('height: '+ inttostr(Printer.PaperSize.Height));
+     DebugLn('width: ' + inttostr(Printer.PaperSize.Width));
   end
-  else begin                           
+  else begin
+    { TODO 1 -ogldm -cprinting : correzioni necessarie per la gestione della stampa quando su macos non è stata installata nessuna stampante }
      Printer.PaperSize.PaperName:='A4';
   end;
 end;
