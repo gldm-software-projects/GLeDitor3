@@ -299,6 +299,7 @@ Type
 
     Private 
     { Private declarations }
+      ThereIsAtLeasOnePrinter: Boolean;
       BlackFont: boolean;
       Salvato: boolean;  /// true if the current file is just saved or unmodifyied, false otherwise
       SearchOpened : boolean;  /// true if the "extended search" is on-screen
@@ -908,10 +909,16 @@ var
   procedure MyPrintPageNumber();
   begin
     //set-up parametri per la scrittura del numero di pagia
-    YPos:=BottomMargin+10;
     Printer.Canvas.Font.Size := 8;
     Printer.Canvas.Font.Italic := True;
-    Printer.Canvas.TextOut(round(Printer.PageWidth/2-LineHeight), YPos, lingua.S_Page+' '+inttostr(pageNum));
+    if ThereIsAtLeasOnePrinter then begin         
+       YPos:=BottomMargin+10;
+       Printer.Canvas.TextOut(round(Printer.PageWidth/2-LineHeight), YPos, lingua.S_Page+' '+inttostr(pageNum))
+    end
+    else begin
+      YPos:=BottomMargin+13;  //aggiustamento when no printer
+      Printer.Canvas.TextOut(round(290-LineHeight), YPos, lingua.S_Page+' '+inttostr(pageNum));
+    end;
     pageNum:=pageNum+1;
     //reset parametri
     Printer.Canvas.Font.Size := 10;
@@ -930,8 +937,11 @@ Begin
         //set-up
         LineHeight := Round(1.2 * Abs(Printer.Canvas.TextHeight('I')));
         VerticalMargin := 4 * LineHeight;
-        BottomMargin   := Printer.PageHeight - VerticalMargin;
-        LeftMargin:= VerticalMargin;
+        if ThereIsAtLeasOnePrinter then
+          BottomMargin   := Printer.PageHeight - VerticalMargin
+        else
+          BottomMargin   := 800 - VerticalMargin;
+        LeftMargin:= 3 * LineHeight;
         pageNum:=1;
         // iniziamo a stampare le righe
         YPos := VerticalMargin;
@@ -941,7 +951,8 @@ Begin
           if YPos>=BottomMargin then begin
             //set-up scrittura numero di pagina
             MyPrintPageNumber();
-            Printer.NewPage;
+            Printer.NewPage;                     
+            if ThereIsAtLeasOnePrinter=false then Printer.PaperSize.PaperName:='A4';
             YPos := VerticalMargin;
           end;
         end;
@@ -4132,10 +4143,15 @@ begin
      DebugLn('printer index: '+ inttostr(Printer.PrinterIndex));
      DebugLn('height: '+ inttostr(Printer.PaperSize.Height));
      DebugLn('width: ' + inttostr(Printer.PaperSize.Width));
+     ThereIsAtLeasOnePrinter:=true;
   end
   else begin
     { TODO 1 -ogldm -cprinting : correzioni necessarie per la gestione della stampa quando su macos non è stata installata nessuna stampante }
+     ThereIsAtLeasOnePrinter:=false;
+     //
      Printer.PaperSize.PaperName:='A4';
+     //Printer.PaperSize.Height:=842;
+     //Printer.PaperSize.Width:=595;
   end;
 end;
 
